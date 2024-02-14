@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 function AuthProviderWrapper(props) {
   const [token, setToken] = useState("");
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -18,6 +19,7 @@ function AuthProviderWrapper(props) {
       })
       .then((token) => {
         console.log(token);
+        localStorage.setItem("authToken", token);
         navigate("/dashboard", { state: { token: token } });
       })
       .catch((err) => {
@@ -54,6 +56,22 @@ function AuthProviderWrapper(props) {
     localStorage.removeItem("authToken");
   };
 
+  const getUser = (userToken) => {
+    axios
+      .get(`${BACK_API_URL}/api/users/uniqueuser`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
+      .then((res) => {
+        console.log("User data retrieved:", res.data.user);
+        setUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -63,6 +81,8 @@ function AuthProviderWrapper(props) {
         token,
         signup,
         logout,
+        getUser,
+        user,
       }}
     >
       {props.children}
