@@ -1,30 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
+import UploadWidget from "../components/UploadWidget";
 
 const CreateAudiovisual = () => {
-  const { token, createAudioVisuals, isLoggedIn } = useContext(AuthContext);
+  const { token, createAudioVisuals, isLoggedIn, checkLogin } =
+    useContext(AuthContext);
   const [categorie, setCategorie] = useState("");
   const [synopsis, setSynopsis] = useState("");
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState([]);
   const [author, setAuthor] = useState("");
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
   const [duration, setDuration] = useState();
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   //   categorie, synopsis, title, genre, author, date, image
   const navigate = useNavigate();
 
   useEffect(() => {
-   if (token) {
-     getUser(token);
-   }
- }, [token]);
+    checkLogin();
+  }, []);
 
   if (!isLoggedIn) {
     return (
       <div>
-        <h3>You must be login to see articles</h3>
+        <h3>You must be login to see AudioVisuals </h3>
         <button onClick={() => navigate("/")}>Go to login page</button>
       </div>
     );
@@ -33,7 +33,6 @@ const CreateAudiovisual = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const responseCreateAudioVisual = await createAudioVisuals(
-      e,
       token,
       categorie,
       synopsis,
@@ -41,11 +40,15 @@ const CreateAudiovisual = () => {
       genre,
       author,
       date,
-      duration,
-      image
+      image,
+      duration
     );
     console.log(responseCreateAudioVisual);
   };
+
+  //   const handleImageChange = (imageUrl) => {
+  //     setImage(imageUrl);
+  //   };
   return (
     <div>
       <h2>Créer un film, série ou animé</h2>
@@ -128,13 +131,7 @@ const CreateAudiovisual = () => {
         </div>
         <div>
           <label>Image :</label>
-          <input
-            type="file"
-            value={image}
-            onChange={(e) => {
-              setImage(e.target.value);
-            }}
-          />
+          <UploadWidget onImageChange={setImage} />
         </div>
         <button type="submit">Créer un Audiovisuel</button>
       </form>

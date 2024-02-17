@@ -2,10 +2,10 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 
 export default function Dashboard() {
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn, checkLogin } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(user);
+    checkLogin();
   }, [user]);
 
   if (!isLoggedIn) {

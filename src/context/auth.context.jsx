@@ -78,7 +78,26 @@ function AuthProviderWrapper(props) {
       });
   };
 
-  const createAudioVisuals = (userToken, categorie, synopsis, title, genre, author, date, image, duration) => {
+  const createAudioVisuals = (
+    userToken,
+    categorie,
+    synopsis,
+    title,
+    genre,
+    author,
+    date,
+    image,
+    duration
+  ) => {
+    console.log(userToken);
+    console.log("categorie : ", categorie);
+    console.log("synopsis : ", synopsis);
+    console.log("title : ", title);
+    console.log("genre : ", genre);
+    console.log("author : ", author);
+    console.log("date : ", date);
+    console.log("image : ", image);
+    console.log("duration : ", duration);
     axios
       .post(
         `${BACK_API_URL}/api/audiovisual/`,
@@ -90,6 +109,7 @@ function AuthProviderWrapper(props) {
         }
       )
       .then((res) => {
+        console.log(res);
         setAudioVisuals(res.data);
         return "Audiovisual created";
       })
