@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import CreateAudiovisual from "./pages/CreateAudiovisual";
+import AudioVisualDetails from "./pages/AudioVisualDetails";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signUp" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-audiovisual" element={<CreateAudiovisual />} />
+        <Route path="/:id" element={<AudioVisualDetails />} />
       </Routes>
     </div>
   );

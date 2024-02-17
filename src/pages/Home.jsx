@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
+import { Link } from "react-router-dom";
 
 const Home = (props) => {
   const { allAudioVisuals, getAudioVisuals } = useContext(AuthContext);
@@ -18,7 +19,9 @@ const Home = (props) => {
             <h3>{audiovisual.title}</h3>
             <p>{audiovisual.synopsis}</p>
             <img src={audiovisual.image} alt="" />
-            <button>see details</button>
+            <Link to={`/${audiovisual._id}`}>
+              <button>see details</button>
+            </Link>
           </div>
         ))}
     </div>
