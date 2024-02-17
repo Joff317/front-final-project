@@ -110,13 +110,9 @@ function AuthProviderWrapper(props) {
       });
   };
 
-  const getAudioVisuals = (userToken) => {
+  const getAudioVisuals = () => {
     axios
-      .get(`${BACK_API_URL}/api/audiovisual/`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      })
+      .get(`${BACK_API_URL}/api/audiovisual/`)
       .then((res) => {
         setAllAudioVisuals(res.data.audioVisuals);
       })
@@ -139,6 +135,7 @@ function AuthProviderWrapper(props) {
         user,
         createAudioVisuals,
         audioVisuals,
+        allAudioVisuals,
         getAudioVisuals,
       }}
     >
