@@ -8,6 +8,7 @@ function AuthProviderWrapper(props) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
   const [audioVisuals, setAudioVisuals] = useState([]);
+  const [allAudioVisuals, setAllAudioVisuals] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
@@ -89,15 +90,6 @@ function AuthProviderWrapper(props) {
     image,
     duration
   ) => {
-    console.log(userToken);
-    console.log("categorie : ", categorie);
-    console.log("synopsis : ", synopsis);
-    console.log("title : ", title);
-    console.log("genre : ", genre);
-    console.log("author : ", author);
-    console.log("date : ", date);
-    console.log("image : ", image);
-    console.log("duration : ", duration);
     axios
       .post(
         `${BACK_API_URL}/api/audiovisual/`,
@@ -110,11 +102,26 @@ function AuthProviderWrapper(props) {
       )
       .then((res) => {
         console.log(res);
-        setAudioVisuals(res.data);
+        setAudioVisuals(res.data.audioVisuals);
         return "Audiovisual created";
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const getAudioVisuals = (userToken) => {
+    axios
+      .get(`${BACK_API_URL}/api/audiovisual/`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
+      .then((res) => {
+        setAllAudioVisuals(res.data.audioVisuals);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -132,6 +139,7 @@ function AuthProviderWrapper(props) {
         user,
         createAudioVisuals,
         audioVisuals,
+        getAudioVisuals,
       }}
     >
       {props.children}
