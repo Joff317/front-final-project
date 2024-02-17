@@ -7,6 +7,8 @@ const AuthContext = createContext();
 function AuthProviderWrapper(props) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
+  const [audioVisuals, setAudioVisuals] = useState([]);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -20,6 +22,7 @@ function AuthProviderWrapper(props) {
       .then((token) => {
         console.log(token);
         localStorage.setItem("authToken", token);
+        setLoggedIn(true);
         navigate("/dashboard", { state: { token: token } });
       })
       .catch((err) => {
@@ -32,6 +35,7 @@ function AuthProviderWrapper(props) {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
       setToken(storedToken);
+      setLoggedIn(true);
     }
   };
 
@@ -42,6 +46,7 @@ function AuthProviderWrapper(props) {
       .then((res) => {
         console.log(res.data.token);
         setToken(res.data.token);
+        setLoggedIn(true);
         navigate("/dashboard", { state: { token: token } });
       })
       .catch((err) => {
@@ -53,6 +58,7 @@ function AuthProviderWrapper(props) {
   const logout = (event) => {
     event.preventDefault();
     setToken("");
+    setLoggedIn(false);
     localStorage.removeItem("authToken");
   };
 
@@ -72,17 +78,60 @@ function AuthProviderWrapper(props) {
       });
   };
 
+  const createAudioVisuals = (
+    userToken,
+    categorie,
+    synopsis,
+    title,
+    genre,
+    author,
+    date,
+    image,
+    duration
+  ) => {
+    console.log(userToken);
+    console.log("categorie : ", categorie);
+    console.log("synopsis : ", synopsis);
+    console.log("title : ", title);
+    console.log("genre : ", genre);
+    console.log("author : ", author);
+    console.log("date : ", date);
+    console.log("image : ", image);
+    console.log("duration : ", duration);
+    axios
+      .post(
+        `${BACK_API_URL}/api/audiovisual/`,
+        { categorie, synopsis, title, genre, author, date, image, duration },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        setAudioVisuals(res.data);
+        return "Audiovisual created";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <AuthContext.Provider
       value={{
         value: "AuthValue",
         login,
+        isLoggedIn,
         checkLogin,
         token,
         signup,
         logout,
         getUser,
         user,
+        createAudioVisuals,
+        audioVisuals,
       }}
     >
       {props.children}
