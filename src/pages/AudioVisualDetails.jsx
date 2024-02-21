@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PostCommentary from "../components/audioVisualCommentary/PostCommentary";
 import Commentary from "../components/audioVisualCommentary/Commentary";
+import { AuthContext } from "../context/auth.context";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
+  const { getCommentary } = useContext(AuthContext);
   const [audiovisualDetails, setAudioVisualDetails] = useState(null);
   const BACK_API_URL = process.env.API_URL;
   const fetchAudioVisualDetails = () => {
@@ -35,7 +37,7 @@ const AudioVisualDetails = () => {
       </div>
 
       <div>
-        <PostCommentary id={id} />
+        <PostCommentary id={id} updateComments={getCommentary} />
       </div>
     </div>
   );

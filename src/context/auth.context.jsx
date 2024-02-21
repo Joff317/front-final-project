@@ -139,7 +139,7 @@ function AuthProviderWrapper(props) {
       .catch((err) => console.log(err));
   };
 
-  const createCommentary = async (audioVisualId, text) => {
+  const createCommentary = (audioVisualId, text) => {
     const storedToken = localStorage.getItem("authToken");
     axios
       .post(
@@ -155,13 +155,18 @@ function AuthProviderWrapper(props) {
       )
       .then((res) => {
         console.log(res.data);
-        setPostComments(res.data.createdCommentary);
+        setPostComments(res.data);
         return "Commentary posted";
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const updateCommentary = (audioVisualId, commentId, text) => {
+   
+
+  }
 
   return (
     <AuthContext.Provider

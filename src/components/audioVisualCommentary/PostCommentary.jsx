@@ -6,16 +6,15 @@ const PostCommentary = (props) => {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    createCommentary(props.id);
-  });
-
-  useEffect(() => {
     checkLogin();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createCommentary(text, token);
+    const audioVisualId = props.id;
+    await createCommentary(audioVisualId, text);
+    setText("");
+    props.updateComments();
   };
 
   if (isLoggedIn) {

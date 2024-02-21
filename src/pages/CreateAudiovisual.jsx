@@ -24,8 +24,10 @@ const CreateAudiovisual = () => {
   if (!isLoggedIn) {
     return (
       <div>
-        <h3>You must be login to see AudioVisuals </h3>
-        <button onClick={() => navigate("/")}>Go to login page</button>
+        <h3>Vous devez être connecté pour poster un film </h3>
+        <button onClick={() => navigate("/login")}>
+          Aller sur la page connexion
+        </button>
       </div>
     );
   }
