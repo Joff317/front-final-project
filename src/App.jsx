@@ -4,14 +4,14 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
-import Navbar from "./components/Navbar";
 import CreateAudiovisual from "./pages/CreateAudiovisual";
 import AudioVisualDetails from "./pages/AudioVisualDetails";
+import Nav from "./components/Nav";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
