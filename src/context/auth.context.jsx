@@ -10,6 +10,8 @@ function AuthProviderWrapper(props) {
   const [audioVisuals, setAudioVisuals] = useState([]);
   const [allAudioVisuals, setAllAudioVisuals] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [postComments, setPostComments] = useState([]);
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -121,6 +123,45 @@ function AuthProviderWrapper(props) {
       });
   };
 
+  const getCommentary = async (audioVisualId) => {
+    console.log("getCommentary", audioVisualId);
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .get(`${BACK_API_URL}/api/commentary/${audioVisualId}`, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setComments(res.data.comments);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const createCommentary = async (audioVisualId, text) => {
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .post(
+        `${BACK_API_URL}/api/commentary/${audioVisualId}`,
+        {
+          text,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setPostComments(res.data.createdCommentary);
+        return "Commentary posted";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <AuthContext.Provider
@@ -138,6 +179,10 @@ function AuthProviderWrapper(props) {
         audioVisuals,
         allAudioVisuals,
         getAudioVisuals,
+        getCommentary,
+        comments,
+        createCommentary,
+        postComments,
       }}
     >
       {props.children}

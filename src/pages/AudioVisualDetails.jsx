@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PostCommentary from "../components/audioVisualCommentary/PostCommentary";
+import Commentary from "../components/audioVisualCommentary/Commentary";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
@@ -27,6 +29,14 @@ const AudioVisualDetails = () => {
         {audiovisualDetails && audiovisualDetails.title}
       </h1>
       <p>{audiovisualDetails && audiovisualDetails.synopsis}</p>
+
+      <div>
+        <Commentary id={id} />
+      </div>
+
+      <div>
+        <PostCommentary id={id} />
+      </div>
     </div>
   );
 };
