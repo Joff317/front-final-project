@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
-  const { getCommentary } = useContext(AuthContext);
+  const { getCommentary, isLoggedIn, checkLogin } = useContext(AuthContext);
   const [audiovisualDetails, setAudioVisualDetails] = useState(null);
   const BACK_API_URL = process.env.API_URL;
   const fetchAudioVisualDetails = () => {
@@ -23,6 +23,10 @@ const AudioVisualDetails = () => {
   };
 
   useEffect(() => {
+    checkLogin();
+  }, []);
+
+  useEffect(() => {
     fetchAudioVisualDetails();
   }, [id]);
   return (
@@ -32,12 +36,12 @@ const AudioVisualDetails = () => {
       </h1>
       <p>{audiovisualDetails && audiovisualDetails.synopsis}</p>
 
-      <div>
-        <Commentary id={id} />
-      </div>
+      <div>{isLoggedIn && <Commentary id={id} />}</div>
 
       <div>
-        <PostCommentary id={id} updateComments={getCommentary} />
+        {isLoggedIn && (
+          <PostCommentary id={id} updateComments={getCommentary} />
+        )}
       </div>
     </div>
   );

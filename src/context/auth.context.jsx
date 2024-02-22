@@ -12,6 +12,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [comments, setComments] = useState([]);
   const [postComments, setPostComments] = useState([]);
+  const [updateComments, setUpdateComments] = useState();
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -37,8 +38,8 @@ function AuthProviderWrapper(props) {
   const checkLogin = () => {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
-      setToken(storedToken);
       setLoggedIn(true);
+      setToken(storedToken);
     }
   };
 
@@ -65,11 +66,13 @@ function AuthProviderWrapper(props) {
     localStorage.removeItem("authToken");
   };
 
-  const getUser = (userToken) => {
+  const getUser = () => {
+    const storedToken = localStorage.getItem("authToken");
+
     axios
       .get(`${BACK_API_URL}/api/users/uniqueuser`, {
         headers: {
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${storedToken}`,
         },
       })
       .then((res) => {
@@ -116,10 +119,11 @@ function AuthProviderWrapper(props) {
     axios
       .get(`${BACK_API_URL}/api/audiovisual/`)
       .then((res) => {
+        console.log(res.data);
         setAllAudioVisuals(res.data.audioVisuals);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Get audiovisual Failed : ", error.message);
       });
   };
 
@@ -133,7 +137,7 @@ function AuthProviderWrapper(props) {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.comments);
         setComments(res.data.comments);
       })
       .catch((err) => console.log(err));
@@ -164,9 +168,28 @@ function AuthProviderWrapper(props) {
   };
 
   const updateCommentary = (audioVisualId, commentId, text) => {
-   
-
-  }
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .put(
+        `${BACK_API_URL}/api/commentary/${audioVisualId}/${commentId}`,
+        {
+          text,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setUpdateComments(res.data);
+        return "Commentary updated";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <AuthContext.Provider
@@ -188,6 +211,8 @@ function AuthProviderWrapper(props) {
         comments,
         createCommentary,
         postComments,
+        updateCommentary,
+        updateComments,
       }}
     >
       {props.children}
