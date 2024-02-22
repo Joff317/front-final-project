@@ -183,7 +183,7 @@ function AuthProviderWrapper(props) {
       )
       .then((res) => {
         console.log(res.data);
-        setUpdateComments(res.data);
+        setUpdateComments(res.data.updatedCommentary);
         return "Commentary updated";
       })
       .catch((err) => {

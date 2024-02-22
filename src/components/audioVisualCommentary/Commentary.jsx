@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
+import UpdateCommentary from "./UpdateCommentary";
 
 const Commentary = (props) => {
   const { getCommentary, comments, checkLogin, user, getUser } =
@@ -27,11 +28,7 @@ const Commentary = (props) => {
           <div key={comment._id} className="flex flex-row gap-2">
             <p>{comment.user.pseudo} : </p>
             <p>{comment.text}</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <p>{user._id}</p>
-            <p>{comment._id}</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-            {user._id === comment.user._id ? (<button>Modifier</button>) : ""}
+            <UpdateCommentary comment={comment} updateComment={getCommentary} />
           </div>
         ))}
       </div>
