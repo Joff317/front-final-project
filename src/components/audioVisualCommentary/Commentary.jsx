@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
 import UpdateCommentary from "./UpdateCommentary";
+import DeleteCommentary from "./DeleteCommentary";
 
 const Commentary = (props) => {
   const { getCommentary, comments, checkLogin, user, getUser } =
     useContext(AuthContext);
 
   useEffect(() => {
-    getCommentary(props.id);
+    props.updateComments(props.id);
   }, []);
 
   useEffect(() => {
@@ -28,7 +29,14 @@ const Commentary = (props) => {
           <div key={comment._id} className="flex flex-row gap-2">
             <p>{comment.user.pseudo} : </p>
             <p>{comment.text}</p>
-            <UpdateCommentary comment={comment} updateComment={getCommentary} />
+            <UpdateCommentary
+              comment={comment}
+              updateComments={props.updateComments}
+            />
+            <DeleteCommentary
+              comment={comment}
+              updateComments={props.updateComments}
+            />
           </div>
         ))}
       </div>

@@ -182,9 +182,39 @@ function AuthProviderWrapper(props) {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        setUpdateComments(res.data.updatedCommentary);
+        console.log(res.data.data);
+        console.log("Commeeeeeents", comments);
+        const result = comments.map((comment) => {
+          if (comment._id === res.data.data._id) {
+            return res.data.data;
+          } else {
+            return comment;
+          }
+        });
+        setComments(result);
+        //   setComments([...comments, res.data.data]);
         return "Commentary updated";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteCommentary = (audioVisualId, commentId) => {
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .delete(`${BACK_API_URL}/api/commentary/${audioVisualId}/${commentId}`, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        const deleteComment = comments.filter(
+          (comment) => comment._id !== commentId
+        );
+        setComments(deleteComment);
+        return "Comment deleted";
       })
       .catch((err) => {
         console.log(err);
@@ -213,6 +243,7 @@ function AuthProviderWrapper(props) {
         postComments,
         updateCommentary,
         updateComments,
+        deleteCommentary,
       }}
     >
       {props.children}

@@ -3,21 +3,24 @@ import { AuthContext } from "../../context/auth.context";
 
 const UpdateCommentary = (props) => {
   const { comment } = props;
-  const { user, updateCommentary } = useContext(AuthContext);
+  const { user, updateCommentary, getCommentary } = useContext(AuthContext);
 
   const [newText, setNewText] = useState(comment.text);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleUpdateComment = (audioVisualId, commentId, newText) => {
-    updateCommentary(audioVisualId, commentId, newText);
+  const handleUpdateComment = async (audioVisualId, commentId, newText) => {
+    await updateCommentary(audioVisualId, commentId, newText);
     setIsEditing(false);
+    props.updateComments(props._id);
   };
 
   return (
     <>
       {user._id === comment.user._id ? (
         <>
-          <button onClick={() => setIsEditing(!isEditing)}>Modifier</button>
+          <button onClick={() => setIsEditing(!isEditing)}>
+            {!isEditing ? "Modifier" : "Annuler"}
+          </button>
           {isEditing && (
             <div>
               <label>Modifier le commentaire</label>

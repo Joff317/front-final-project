@@ -36,7 +36,9 @@ const AudioVisualDetails = () => {
       </h1>
       <p>{audiovisualDetails && audiovisualDetails.synopsis}</p>
 
-      <div>{isLoggedIn && <Commentary id={id} />}</div>
+      <div>
+        {isLoggedIn && <Commentary id={id} updateComments={getCommentary} />}
+      </div>
 
       <div>
         {isLoggedIn && (
