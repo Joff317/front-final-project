@@ -76,17 +76,19 @@ const Nav = () => {
             Créer un audiovisuel
           </NavLink>
         </NavbarItem>
-        <NavbarItem>
-          <NavLink
-            to="/dashboard"
-            id="home-item"
-            className={`navcolor navitem ${
-              location.pathname === "/dashboard" ? "active" : ""
-            }`}
-          >
-            Profile
-          </NavLink>
-        </NavbarItem>
+        {isLoggedIn && (
+          <NavbarItem>
+            <NavLink
+              to="/dashboard"
+              id="home-item"
+              className={`navcolor navitem ${
+                location.pathname === "/dashboard" ? "active" : ""
+              }`}
+            >
+              Profile
+            </NavLink>
+          </NavbarItem>
+        )}
         {!isLoggedIn && (
           <NavbarItem>
             <NavLink
@@ -116,7 +118,11 @@ const Nav = () => {
         )}
         {isLoggedIn && (
           <NavbarItem>
-            <button onClick={logout} id="home-item" className="navcolor navitem">
+            <button
+              onClick={logout}
+              id="home-item"
+              className="navcolor navitem"
+            >
               Logout
             </button>
           </NavbarItem>

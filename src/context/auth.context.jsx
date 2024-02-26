@@ -13,6 +13,7 @@ function AuthProviderWrapper(props) {
   const [comments, setComments] = useState([]);
   const [postComments, setPostComments] = useState([]);
   const [updateComments, setUpdateComments] = useState();
+  const [getFilterParams, setGetFilterParams] = useState();
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -125,6 +126,25 @@ function AuthProviderWrapper(props) {
       .catch((error) => {
         console.log("Get audiovisual Failed : ", error.message);
       });
+  };
+
+  const getAudioVisualsByType = () => {
+    const filterParams = getFilterParams;
+
+    if (filterParams && filterParams.toLowerCase() !== "tout") {
+      axios
+        .get(`${BACK_API_URL}/api/audiovisual/categorie/${filterParams}`)
+        .then((res) => {
+          console.log(res.data);
+          setAllAudioVisuals(res.data.audioVisuals);
+        })
+        .catch((err) => {
+          console.log("Erreur lors de la récupération des données : ", err);
+          setAllAudioVisuals([]);
+        });
+    } else {
+      getAudioVisuals();
+    }
   };
 
   const getCommentary = async (audioVisualId) => {
@@ -244,6 +264,9 @@ function AuthProviderWrapper(props) {
         updateCommentary,
         updateComments,
         deleteCommentary,
+        getAudioVisualsByType,
+        getFilterParams,
+        setGetFilterParams,
       }}
     >
       {props.children}
