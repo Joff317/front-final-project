@@ -48,11 +48,7 @@ const Nav = () => {
       {isLoggedIn && <button onClick={logout}>Logout</button>} */
   }
   return (
-    <Navbar
-      onMenuOpenChange={setIsMenuOpen}
-      className="bg-purple-500"
-      maxWidth="full"
-    >
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="navbar" maxWidth="full">
       <NavbarContent className="max-w-[600px]">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -61,7 +57,9 @@ const Nav = () => {
         <NavLink to="/">
           <NavbarBrand>
             <img src={logo} className="w-12 h-12 rounded-xl mr-2" />
-            <p className="text-black">Social Watch</p>
+            <p className="navitem" id="home-item">
+              Social Watch
+            </p>
           </NavbarBrand>
         </NavLink>
       </NavbarContent>
@@ -71,7 +69,7 @@ const Nav = () => {
           <NavLink
             to="/create-audiovisual"
             id="home-item"
-            className={`navitem text-black ${
+            className={`navcolor navitem ${
               location.pathname === "/create-audiovisual" ? "active" : ""
             }`}
           >
@@ -82,7 +80,7 @@ const Nav = () => {
           <NavLink
             to="/dashboard"
             id="home-item"
-            className={`navitem text-black ${
+            className={`navcolor navitem ${
               location.pathname === "/dashboard" ? "active" : ""
             }`}
           >
@@ -93,8 +91,9 @@ const Nav = () => {
           <NavbarItem>
             <NavLink
               to="/login"
+              id="home-item"
               aria-current="page"
-              className={`navitem text-black ${
+              className={`navcolor navitem ${
                 location.pathname === "/login" ? "active" : ""
               }`}
             >
@@ -105,8 +104,9 @@ const Nav = () => {
         {!isLoggedIn && (
           <NavbarItem>
             <NavLink
+              id="home-item"
               to="/signup"
-              className={`navitem text-black ${
+              className={`navcolor navitem ${
                 location.pathname === "/signup" ? "active" : ""
               }`}
             >
@@ -116,7 +116,7 @@ const Nav = () => {
         )}
         {isLoggedIn && (
           <NavbarItem>
-            <button onClick={logout} className="navitem text-black">
+            <button onClick={logout} id="home-item" className="navcolor navitem">
               Logout
             </button>
           </NavbarItem>
