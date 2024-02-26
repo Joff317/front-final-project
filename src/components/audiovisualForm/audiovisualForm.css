@@ -1,0 +1,20 @@
+.input {
+   background: #03010a;
+   border-radius: 8px;
+   padding: 8px;
+}
+
+#btn {
+   background-color: #03010a;
+   padding: 12px;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+#btn:hover {
+   border: 1px solid;
+}
+
+.audiovisual-h2 {
+   color: rgb(108, 13, 13);
+}

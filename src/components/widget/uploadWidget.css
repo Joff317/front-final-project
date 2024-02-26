@@ -1,0 +1,10 @@
+#widget-btn {
+   background-color: #03010a;
+   padding: 12px;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+#widget-btn:hover {
+   border: 1px solid;
+}
