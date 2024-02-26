@@ -3,13 +3,16 @@
 }
 
 #home-item {
-   color: black !important;
+   color: rgb(108, 13, 13) ;
+}
+
+.navbar{
+   background-color: #03010a;
 }
 
 
 .navitem {
    text-decoration: none;
-   color: #fff;
    font-weight: bold;
 }
 
@@ -31,7 +34,7 @@
    left: 0;
    width: 0;
    height: 2px;
-   background-color: rgb(65, 65, 67);
+   background-color: rgb(108, 13, 13);
    transition: width 0.3s ease;
 }
 
