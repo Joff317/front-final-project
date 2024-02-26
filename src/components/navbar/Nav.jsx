@@ -8,10 +8,10 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import logo from "../assets/logo.jpg";
+import logo from "../../assets/logo.jpg";
 import { NavLink, useLocation } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import "./Nav.css"
+import { AuthContext } from "../../context/auth.context";
+import "./Nav.css";
 const Nav = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -29,6 +29,10 @@ const Nav = () => {
     {
       name: "S'inscrire",
       navlink: "/signup",
+    },
+    {
+      name: "Profile",
+      navlink: "/dashboard",
     },
     {
       name: "Logout",
@@ -72,6 +76,17 @@ const Nav = () => {
             }`}
           >
             Créer un audiovisuel
+          </NavLink>
+        </NavbarItem>
+        <NavbarItem>
+          <NavLink
+            to="/dashboard"
+            id="home-item"
+            className={`navitem text-black ${
+              location.pathname === "/dashboard" ? "active" : ""
+            }`}
+          >
+            Profile
           </NavLink>
         </NavbarItem>
         {!isLoggedIn && (

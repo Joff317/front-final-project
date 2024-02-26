@@ -1,12 +1,16 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
+import AudioVisualList from "../components/audioVisualList/AudioVisualList";
 
 export default function Dashboard() {
-  const { user, isLoggedIn, checkLogin } = useContext(AuthContext);
+  const { user, isLoggedIn, checkLogin, getUser } = useContext(AuthContext);
 
   useEffect(() => {
     checkLogin();
-  }, [user]);
+    getUser();
+  }, []);
+
+  console.log(user);
 
   if (!isLoggedIn) {
     return (
@@ -16,10 +20,13 @@ export default function Dashboard() {
       </div>
     );
   }
+
+  // console.log(user);
   return (
-    <div>
+    <section>
       <h1>Welcome to user profile</h1>
       <h2>Bienvenue {user.pseudo}</h2>
-    </div>
+      <AudioVisualList user={user} />
+    </section>
   );
 }
