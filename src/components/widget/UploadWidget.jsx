@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "./uploadWidget.css";
 const UploadWidget = ({ onImageChange }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
@@ -19,7 +20,7 @@ const UploadWidget = ({ onImageChange }) => {
     );
   }, [onImageChange]);
   return (
-    <button onClick={() => widgetRef.current.open()}>
+    <button id="widget-btn" onClick={() => widgetRef.current.open()}>
       Telecharger une image
     </button>
   );
