@@ -51,7 +51,7 @@ const AudioVisualForm = () => {
   return (
     <>
       <form
-        className="sm:w-[400px] max-sm:w-[300px]"
+        className="sm:w-[500px] max-sm:w-[300px]"
         encType="multipart/form-data"
         onSubmit={(e) => {
           handleSubmit(e);
@@ -64,7 +64,7 @@ const AudioVisualForm = () => {
           <input
             placeholder="film, série ou animé"
             required
-            className="input  h-10"
+            className="input h-10"
             type="text"
             value={categorie}
             onChange={(e) => {
