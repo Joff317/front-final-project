@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import CreateAudiovisual from "./pages/CreateAudiovisual";
 import AudioVisualDetails from "./pages/AudioVisualDetails";
-import Nav from "./components/Nav";
+import Nav from "./components/navbar/Nav";
 
 function App() {
   return (

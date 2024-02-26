@@ -33,7 +33,9 @@ const AudiovisualCard = (props) => {
             <p className="text-black text-tiny">
               Categorie : {audiovisual.categorie}
             </p>
-            <p className="text-black text-tiny ">Genre : {audiovisual.genre}</p>
+            <p className="text-black text-tiny ">
+              Genre : {audiovisual.genre.join(", ")}
+            </p>
           </div>
           <Link to={`/${audiovisual._id}`}>
             <Button

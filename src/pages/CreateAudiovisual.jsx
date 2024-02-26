@@ -17,6 +17,23 @@ const CreateAudiovisual = () => {
   //   categorie, synopsis, title, genre, author, date, image
   const navigate = useNavigate();
 
+  const allowedGenre = [
+    "science-fiction",
+    "horreur",
+    "action",
+    "aventure",
+    "surnaturel",
+    "drame",
+    "comedie",
+    "romance",
+    "thriller",
+    "fantastique",
+    "animation",
+    "documentaire",
+    "policier",
+    "autre",
+  ];
+
   useEffect(() => {
     checkLogin();
   }, []);
@@ -24,10 +41,8 @@ const CreateAudiovisual = () => {
   if (!isLoggedIn) {
     return (
       <div>
-        <h3>Vous devez être connecté pour poster un film </h3>
-        <button onClick={() => navigate("/login")}>
-          Aller sur la page connexion
-        </button>
+        <h3>You must be login to see AudioVisuals </h3>
+        <button onClick={() => navigate("/")}>Go to login page</button>
       </div>
     );
   }
@@ -93,13 +108,23 @@ const CreateAudiovisual = () => {
         </div>
         <div>
           <label>Genre :</label>
-          <input
-            type="text"
+          <select
+            multiple
             value={genre}
             onChange={(e) => {
-              setGenre(e.target.value);
+              const selectedGenres = Array.from(e.target.options)
+                .filter((option) => option.selected)
+                .map((option) => option.value);
+
+              setGenre(selectedGenres);
             }}
-          />
+          >
+            {allowedGenre.map((genreOption) => (
+              <option key={genreOption} value={genreOption}>
+                {genreOption}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label>Auteur :</label>
