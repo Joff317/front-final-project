@@ -14,6 +14,7 @@ function AuthProviderWrapper(props) {
   const [postComments, setPostComments] = useState([]);
   const [updateComments, setUpdateComments] = useState();
   const [getFilterParams, setGetFilterParams] = useState();
+  const [getGenreParams, setGetGenreParams] = useState();
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -128,23 +129,22 @@ function AuthProviderWrapper(props) {
       });
   };
 
-  const getAudioVisualsByType = () => {
-    const filterParams = getFilterParams;
-
-    if (filterParams && filterParams.toLowerCase() !== "tout") {
-      axios
-        .get(`${BACK_API_URL}/api/audiovisual/categorie/${filterParams}`)
-        .then((res) => {
-          console.log(res.data);
-          setAllAudioVisuals(res.data.audioVisuals);
-        })
-        .catch((err) => {
-          console.log("Erreur lors de la récupération des données : ", err);
-          setAllAudioVisuals([]);
-        });
-    } else {
-      getAudioVisuals();
-    }
+  const getFilteredAudioVisuals = (query) => {
+    return axios
+      .get(`${BACK_API_URL}/api/audiovisual/filtered/mixed`, {
+        params: query,
+      })
+      .then((response) => {
+        console.log(
+          "Filtered AudioVisuals Response:",
+          response.data.audioVisuals
+        );
+        setAllAudioVisuals(response.data.audioVisuals);
+        return response.data.audioVisuals;
+      })
+      .catch((error) => {
+        console.error("Error fetching filtered audiovisuals: ", error);
+      });
   };
 
   const getCommentary = async (audioVisualId) => {
@@ -264,9 +264,7 @@ function AuthProviderWrapper(props) {
         updateCommentary,
         updateComments,
         deleteCommentary,
-        getAudioVisualsByType,
-        getFilterParams,
-        setGetFilterParams,
+        getFilteredAudioVisuals,
       }}
     >
       {props.children}

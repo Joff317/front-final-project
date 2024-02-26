@@ -1,31 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
+import AudiovisualCard from "../audioVisualCard/AudiovisualCard";
 
-const AudioVisualFilter = () => {
-  const { getAudioVisualsByType, getFilterParams, setGetFilterParams } =
-    useContext(AuthContext);
-
-  useEffect(() => {
-    getAudioVisualsByType();
-  }, [getFilterParams]);
-
+const AudioVisualFilter = ({ handleTypeChange }) => {
   const handleChange = (event) => {
     const selectedValue = event.target.value;
-
-    setGetFilterParams(selectedValue);
+    handleTypeChange(selectedValue === "tout" ? "" : selectedValue);
   };
+
   return (
     <div className="mb-6">
       <label htmlFor="visualType">Choisir le type :</label>
-      <select
-        id="visualType"
-        value={getFilterParams || ""}
-        onChange={handleChange}
-      >
+      <select id="visualType" onChange={handleChange}>
         <option value="">Tout</option>
         <option value="film">Films</option>
         <option value="serie">Séries</option>
-        <option value="anime">Animés</option>
+        <option value="animé">Animés</option>
       </select>
     </div>
   );
