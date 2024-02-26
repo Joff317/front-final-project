@@ -17,8 +17,13 @@ const CreateAudiovisual = () => {
   if (!isLoggedIn) {
     return (
       <div className="h-screen pt-4 w-full flex flex-col items-center justify-center">
-        <h2 className="text-2xl uppercase h2 mb-4"> Vous devez être connecté pour créer un audiovisuel </h2>
-        <button id="btn" onClick={() => navigate("/login")}>Go to login page</button>
+        <h2 className="text-xl uppercase h2 mb-4 text-center p-2">
+          {" "}
+          Vous devez être connecté pour créer un audiovisuel{" "}
+        </h2>
+        <button id="btn" onClick={() => navigate("/login")}>
+          Go to login page
+        </button>
       </div>
     );
   }

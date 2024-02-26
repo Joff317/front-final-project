@@ -68,7 +68,7 @@ const AudioVisualForm = () => {
             type="text"
             value={categorie}
             onChange={(e) => {
-              setCategorie(e.target.value);
+              setCategorie(e.target.value.toLowerCase());
             }}
           />
         </div>
