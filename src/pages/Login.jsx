@@ -63,6 +63,11 @@ const Login = () => {
             Login
           </button>
         </div>
+
+        <div className="flex flex-col justify-center items-center mt-6 gap-4">
+          <p>Pas encore inscrit ?</p>
+          <button onClick={() => navigate("/signUp")} className="underline" id="link">Inscrivez-vous</button>
+        </div>
       </form>
     </div>
   );

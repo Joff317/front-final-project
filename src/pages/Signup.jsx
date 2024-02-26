@@ -16,16 +16,20 @@ const Signup = () => {
     }
   };
   return (
-    <div>
-      <h1>Signup Page</h1>
+    <div className="h-screen pt-4 w-full flex flex-col items-center justify-center">
+      <h1 className="text-2xl uppercase h2 mb-6">Signup Page</h1>
       <form
+        className="sm:w-[500px] max-sm:w-[300px]"
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <div>
-          <label htmlFor="pseudo">Pseudo: </label>
+        <div className="flex flex-col gap-2 mb-5">
+          <label htmlFor="pseudo">
+            Pseudo <span className="text-red-700">*</span> :{" "}
+          </label>
           <input
+            className="input"
             type="text"
             value={pseudo}
             onChange={(e) => {
@@ -33,9 +37,12 @@ const Signup = () => {
             }}
           />
         </div>
-        <div>
-          <label htmlFor="pseudo">Email: </label>
+        <div className="flex flex-col gap-2 mb-5">
+          <label htmlFor="pseudo">
+            Email <span className="text-red-700">*</span> :{" "}
+          </label>
           <input
+            className="input"
             type="text"
             value={email}
             onChange={(e) => {
@@ -43,9 +50,12 @@ const Signup = () => {
             }}
           />
         </div>
-        <div>
-          <label htmlFor="pseudo">Mot de passe: </label>
+        <div className="flex flex-col gap-2 mb-5">
+          <label htmlFor="pseudo">
+            Mot de passe <span className="text-red-700">*</span> :{" "}
+          </label>
           <input
+            className="input"
             type="password"
             value={password}
             onChange={(e) => {
@@ -53,7 +63,11 @@ const Signup = () => {
             }}
           />
         </div>
-        <button type="submit">Créer un compte</button>
+        <div className="flex justify-center mt-6">
+          <button id="btn" type="submit">
+            Créer un compte
+          </button>
+        </div>
       </form>
     </div>
   );

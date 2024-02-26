@@ -16,18 +16,16 @@ const CreateAudiovisual = () => {
 
   if (!isLoggedIn) {
     return (
-      <div>
-        <h3>You must be login to see AudioVisuals </h3>
-        <button onClick={() => navigate("/")}>Go to login page</button>
+      <div className="h-screen pt-4 w-full flex flex-col items-center justify-center">
+        <h2 className="text-2xl uppercase h2 mb-4"> Vous devez être connecté pour créer un audiovisuel </h2>
+        <button id="btn" onClick={() => navigate("/login")}>Go to login page</button>
       </div>
     );
   }
 
   return (
     <div className="min-h-full pt-4 w-full flex flex-col items-center justify-center gap-4 ">
-      <h2 className="text-xl uppercase h2">
-        Créer un film, série ou animé
-      </h2>
+      <h2 className="text-xl uppercase h2">Créer un film, série ou animé</h2>
 
       <AudioVisualForm />
     </div>
