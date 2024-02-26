@@ -85,3 +85,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
+#link{
+  color: rgb(108, 13, 13);
+}
