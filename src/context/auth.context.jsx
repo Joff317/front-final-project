@@ -13,8 +13,6 @@ function AuthProviderWrapper(props) {
   const [comments, setComments] = useState([]);
   const [postComments, setPostComments] = useState([]);
   const [updateComments, setUpdateComments] = useState();
-  const [getFilterParams, setGetFilterParams] = useState();
-  const [getGenreParams, setGetGenreParams] = useState();
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -147,6 +145,23 @@ function AuthProviderWrapper(props) {
       });
   };
 
+  const searchAudioVisuals = (query) => {
+    console.log("Search Data", query);
+    if (query !== "") {
+      axios
+        .get(`${BACK_API_URL}/api/audiovisual/searchbar/search?query=${query}`)
+        .then((res) => {
+          console.log("Search Results:", res.data.audioVisuals);
+          setAllAudioVisuals(res.data.audioVisuals);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      getAudioVisuals();
+    }
+  };
+
   const getCommentary = async (audioVisualId) => {
     console.log("getCommentary", audioVisualId);
     const storedToken = localStorage.getItem("authToken");
@@ -256,6 +271,7 @@ function AuthProviderWrapper(props) {
         createAudioVisuals,
         audioVisuals,
         allAudioVisuals,
+        setAllAudioVisuals,
         getAudioVisuals,
         getCommentary,
         comments,
@@ -265,6 +281,7 @@ function AuthProviderWrapper(props) {
         updateComments,
         deleteCommentary,
         getFilteredAudioVisuals,
+        searchAudioVisuals,
       }}
     >
       {props.children}
