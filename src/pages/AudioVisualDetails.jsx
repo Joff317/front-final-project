@@ -7,8 +7,10 @@ import { AuthContext } from "../context/auth.context";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
-  const { getCommentary, isLoggedIn, checkLogin } = useContext(AuthContext);
+  const { getCommentary, isLoggedIn, checkLogin, addAudioVisualsToFavorites } =
+    useContext(AuthContext);
   const [audiovisualDetails, setAudioVisualDetails] = useState(null);
+  console.log(audiovisualDetails);
   const BACK_API_URL = process.env.API_URL;
   const fetchAudioVisualDetails = () => {
     axios
@@ -20,6 +22,10 @@ const AudioVisualDetails = () => {
       .catch((e) => {
         console.error(e);
       });
+  };
+
+  const handleFavorite = () => {
+    addAudioVisualsToFavorites(audiovisualDetails._id);
   };
 
   useEffect(() => {
@@ -44,6 +50,12 @@ const AudioVisualDetails = () => {
         {isLoggedIn && (
           <PostCommentary id={id} updateComments={getCommentary} />
         )}
+      </div>
+
+      <div className="mt-6">
+        <button onClick={() => handleFavorite()} id="btn">
+          Add to favorite
+        </button>
       </div>
     </div>
   );

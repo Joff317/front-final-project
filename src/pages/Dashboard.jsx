@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
-import AudioVisualList from "../components/audioVisualList/AudioVisualList";
 import { useNavigate } from "react-router-dom";
+import Favorites from "../components/favorites/Favorites";
 
 export default function Dashboard() {
   const { user, isLoggedIn, checkLogin, getUser } = useContext(AuthContext);
@@ -33,7 +33,7 @@ export default function Dashboard() {
     <section>
       <h1>Welcome to user profile</h1>
       <h2>Bienvenue {user.pseudo}</h2>
-      <AudioVisualList user={user} />
+      <Favorites user={user} />
     </section>
   );
 }
