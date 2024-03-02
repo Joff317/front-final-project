@@ -8,9 +8,9 @@ const AudiovisualCard = (props) => {
   const isFavorite =
     favorites && favorites.some((fav) => fav._id === audiovisual._id);
 
-  const handleDeleteFavorite = () => {
-    deleteFavorite(audiovisual._id);
-  };
+  // const handleDeleteFavorite = () => {
+  //   deleteFavorite(audiovisual._id);
+  // };
 
   return (
     <div key={audiovisual._id}>
@@ -63,7 +63,7 @@ const AudiovisualCard = (props) => {
                 radius="full"
                 size="sm"
                 id="btn-delete"
-                onClick={handleDeleteFavorite}
+                onClick={props.deleteFavorite}
               >
                 Delete
               </Button>

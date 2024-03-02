@@ -1,13 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import AudiovisualCard from "../audioVisualCard/AudiovisualCard";
+import DeleteFavoritePopup from "./popupConfirmation/deletePopup/DeleteFavoritePopup";
 
 const Favorites = () => {
   const { favorites, getFavorite, deleteFavorite } = useContext(AuthContext);
+  const [deletePopup, setDeletePopup] = useState(false);
 
   useEffect(() => {
     getFavorite();
   }, []);
+
+  const handleDelete = async (audioVisualId) => {
+    await deleteFavorite(audioVisualId);
+    setDeletePopup(true);
+    setTimeout(() => {
+      setDeletePopup(false);
+    }, 3000);
+  };
 
   return (
     <div>
@@ -19,11 +29,13 @@ const Favorites = () => {
             <AudiovisualCard
               key={fav._id}
               audiovisual={fav}
-              deleteFavorite={deleteFavorite}
+              deleteFavorite={() => handleDelete(fav._id)}
               favorites={favorites}
             />
           ))}
       </div>
+
+      {deletePopup && <DeleteFavoritePopup />}
     </div>
   );
 };
