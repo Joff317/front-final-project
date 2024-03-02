@@ -51,14 +51,6 @@ const AudiovisualCard = (props) => {
         </CardFooter>
       </Card>
     </div>
-    //  <div key={audiovisual._id}>
-    //    <h3>{audiovisual.title}</h3>
-    //    <p>{audiovisual.synopsis}</p>
-    //    <img src={audiovisual.image} alt="" />
-    //    <Link to={`/${audiovisual._id}`}>
-    //      <button>see details</button>
-    //    </Link>
-    //  </div>
   );
 };
 

@@ -4,11 +4,14 @@ import { useParams } from "react-router-dom";
 import PostCommentary from "../components/audioVisualCommentary/PostCommentary";
 import Commentary from "../components/audioVisualCommentary/Commentary";
 import { AuthContext } from "../context/auth.context";
+import AddFavorites from "../components/favorites/AddFavorites";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
-  const { getCommentary, isLoggedIn, checkLogin } = useContext(AuthContext);
+  const { getCommentary, isLoggedIn, checkLogin, addAudioVisualsToFavorites } =
+    useContext(AuthContext);
   const [audiovisualDetails, setAudioVisualDetails] = useState(null);
+  console.log(audiovisualDetails);
   const BACK_API_URL = process.env.API_URL;
   const fetchAudioVisualDetails = () => {
     axios
@@ -45,6 +48,8 @@ const AudioVisualDetails = () => {
           <PostCommentary id={id} updateComments={getCommentary} />
         )}
       </div>
+
+      <div className="mt-6">{isLoggedIn && <AddFavorites id={id} />}</div>
     </div>
   );
 };
