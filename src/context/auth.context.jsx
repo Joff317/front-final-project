@@ -13,7 +13,7 @@ function AuthProviderWrapper(props) {
   const [comments, setComments] = useState([]);
   const [postComments, setPostComments] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [addFavorite, setAddFavorite] = useState([]);
+  const [addFavorite, setAddFavorite] = useState();
   const [updateComments, setUpdateComments] = useState();
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
@@ -167,15 +167,17 @@ function AuthProviderWrapper(props) {
   const addAudioVisualsToFavorites = (audioVisualId) => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .post(`${BACK_API_URL}/api/users/addFavorite/${audioVisualId}`, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      })
+      .post(
+        `${BACK_API_URL}/api/users/addFavorite/${audioVisualId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      )
       .then((res) => {
-        console.log(res.data);
         console.log("favoris ajouté");
-        setAddFavorite(res.data);
       })
       .catch((err) => console.log(err));
   };

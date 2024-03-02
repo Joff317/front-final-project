@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import PostCommentary from "../components/audioVisualCommentary/PostCommentary";
 import Commentary from "../components/audioVisualCommentary/Commentary";
 import { AuthContext } from "../context/auth.context";
+import AddFavorites from "../components/favorites/AddFavorites";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
@@ -22,10 +23,6 @@ const AudioVisualDetails = () => {
       .catch((e) => {
         console.error(e);
       });
-  };
-
-  const handleFavorite = () => {
-    addAudioVisualsToFavorites(audiovisualDetails._id);
   };
 
   useEffect(() => {
@@ -52,11 +49,7 @@ const AudioVisualDetails = () => {
         )}
       </div>
 
-      <div className="mt-6">
-        <button onClick={() => handleFavorite()} id="btn">
-          Add to favorite
-        </button>
-      </div>
+      <div className="mt-6">{isLoggedIn && <AddFavorites id={id} />}</div>
     </div>
   );
 };
