@@ -51,8 +51,12 @@ function AuthProviderWrapper(props) {
     axios
       .post(`${BACK_API_URL}/api/users`, { pseudo, email, password })
       .then((res) => {
-        console.log(res.data.token);
-        setToken(res.data.token);
+        return res.data.token;
+      })
+      .then((token) => {
+        // console.log(res.data.token);
+        // setToken(res.data.token);
+        localStorage.setItem("authToken", token);
         setLoggedIn(true);
         navigate("/dashboard", { state: { token: token } });
       })
@@ -65,12 +69,13 @@ function AuthProviderWrapper(props) {
   const logout = (event) => {
     event.preventDefault();
     setToken("");
-    setLoggedIn(false);
     localStorage.removeItem("authToken");
+    setLoggedIn(false);
   };
 
   const getUser = () => {
     const storedToken = localStorage.getItem("authToken");
+    console.log(storedToken);
 
     axios
       .get(`${BACK_API_URL}/api/users/uniqueuser`, {

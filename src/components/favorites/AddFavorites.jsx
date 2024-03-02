@@ -3,7 +3,8 @@ import { AuthContext } from "../../context/auth.context";
 import AddFavoritePopup from "./popupConfirmation/addPopup/AddFavoritePopup";
 
 const AddFavorites = (props) => {
-  const { addAudioVisualsToFavorites, checkLogin } = useContext(AuthContext);
+  const { addAudioVisualsToFavorites, checkLogin, favorites } =
+    useContext(AuthContext);
   console.log(addAudioVisualsToFavorites);
   const [showNotification, setShowNotification] = useState(false);
 
@@ -26,6 +27,7 @@ const AddFavorites = (props) => {
       <button onClick={() => handleFavorite()} id="btn">
         Add to favorite
       </button>
+
       {showNotification && <AddFavoritePopup />}
     </>
   );

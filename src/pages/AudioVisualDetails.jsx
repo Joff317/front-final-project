@@ -8,10 +8,10 @@ import AddFavorites from "../components/favorites/AddFavorites";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
-  const { getCommentary, isLoggedIn, checkLogin, addAudioVisualsToFavorites } =
+  const { getCommentary, isLoggedIn, checkLogin, user, getUser } =
     useContext(AuthContext);
+
   const [audiovisualDetails, setAudioVisualDetails] = useState(null);
-  console.log(audiovisualDetails);
   const BACK_API_URL = process.env.API_URL;
   const fetchAudioVisualDetails = () => {
     axios
@@ -20,18 +20,30 @@ const AudioVisualDetails = () => {
         console.log(res.data);
         setAudioVisualDetails(res.data.audioVisual);
       })
-      .catch((e) => {
-        console.error(e);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   useEffect(() => {
     checkLogin();
+    if (isLoggedIn) {
+      getUser();
+    }
   }, []);
+
+  // useEffect(() => {
+  //   console.log(user.favorites);
+  //   // console.log(audiovisualDetails._id);
+  //   // console.log(
+  //   //   // user.favorites.some((fav) => fav._id === audiovisualDetails.id)
+  //   // );
+  // }, [user]);
 
   useEffect(() => {
     fetchAudioVisualDetails();
   }, [id]);
+
   return (
     <div className="min-h-full pt-4 w-full flex flex-col justify-center items-center">
       <h1 className="text-black text-4xl mb-8 text-center font-pacifico">
@@ -49,7 +61,15 @@ const AudioVisualDetails = () => {
         )}
       </div>
 
-      <div className="mt-6">{isLoggedIn && <AddFavorites id={id} />}</div>
+      <div className="mt-6">
+        {isLoggedIn &&
+        user.favorites &&
+        user.favorites.some((fav) => fav._id === audiovisualDetails._id) ? (
+          <p>Film déjà présent dans vos favoris</p>
+        ) : isLoggedIn ? (
+          <AddFavorites id={id} />
+        ) : null}
+      </div>
     </div>
   );
 };
