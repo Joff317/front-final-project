@@ -10,10 +10,7 @@ const Signup = () => {
   const [pseudo, setPseudo] = useState("");
 
   const handleSubmit = async (e) => {
-    const signupResponse = await signup(e, pseudo, email, password);
-    if (signupResponse === "signup ok") {
-      navigate("/dashboard");
-    }
+    await signup(e, pseudo, email, password);
   };
   return (
     <div className="h-screen pt-4 w-full flex flex-col items-center justify-center">

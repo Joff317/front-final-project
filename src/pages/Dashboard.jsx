@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 import Favorites from "../components/favorites/Favorites";
 
 export default function Dashboard() {
-  const { user, isLoggedIn, checkLogin, getUser } = useContext(AuthContext);
+  const { user, isLoggedIn, checkLogin, getUser, favorites } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     checkLogin();
-    getUser();
+    // getUser();
   }, []);
 
-  console.log(user);
+  useEffect(() => {
+    getUser();
+    console.log(user);
+  }, []);
 
   if (!isLoggedIn) {
     return (
@@ -32,8 +36,8 @@ export default function Dashboard() {
   return (
     <section>
       <h1>Welcome to user profile</h1>
-      <h2>Bienvenue {user.pseudo}</h2>
-      <Favorites user={user} />
+      <h2>Bienvenue {user && user.pseudo}</h2>
+      {user.favorites && <Favorites user={user} />}
     </section>
   );
 }
