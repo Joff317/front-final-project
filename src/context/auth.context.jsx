@@ -15,6 +15,7 @@ function AuthProviderWrapper(props) {
   const [favorites, setFavorites] = useState([]);
   const [addFavorite, setAddFavorite] = useState();
   const [updateComments, setUpdateComments] = useState();
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
 
@@ -178,6 +179,7 @@ function AuthProviderWrapper(props) {
       )
       .then((res) => {
         console.log("favoris ajouté");
+        setShowNotification(true);
       })
       .catch((err) => console.log(err));
   };
@@ -198,6 +200,23 @@ function AuthProviderWrapper(props) {
         console.error("Erreur lors de la récupération des favoris :", error);
         throw error;
       });
+  };
+
+  const deleteFavorite = (audioVisualId) => {
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .delete(`${BACK_API_URL}/api/users/removeFavorite/${audioVisualId}`, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      })
+      .then((res) => {
+        setFavorites((prevFav) =>
+          prevFav.filter((fav) => fav._id !== audioVisualId)
+        );
+        setShowNotification(true);
+      })
+      .catch((err) => console.log(err));
   };
 
   const getCommentary = async (audioVisualId) => {
@@ -324,6 +343,7 @@ function AuthProviderWrapper(props) {
         addFavorite,
         getFavorite,
         favorites,
+        deleteFavorite,
       }}
     >
       {props.children}
