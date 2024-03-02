@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import "./audioVisualCard.css";
 const AudiovisualCard = (props) => {
-  const { audiovisual } = props;
+  const { audiovisual, favorites, deleteFavorite } = props;
   const isImage = audiovisual.image;
+  const isFavorite =
+    favorites && favorites.some((fav) => fav._id === audiovisual._id);
+
+  const handleDeleteFavorite = () => {
+    deleteFavorite(audiovisual._id);
+  };
+
   return (
     <div key={audiovisual._id}>
       <Card
@@ -37,17 +44,31 @@ const AudiovisualCard = (props) => {
               Genre : {audiovisual.genre.join(", ")}
             </p>
           </div>
-          <Link to={`/${audiovisual._id}`}>
-            <Button
-              className="text-tiny  text-white font-bold"
-              color="primary"
-              radius="full"
-              size="sm"
-              id="btn"
-            >
-              See Details
-            </Button>
-          </Link>
+          <div className="flex flex-col">
+            <Link to={`/${audiovisual._id}`}>
+              <Button
+                className="text-tiny  text-white font-bold"
+                color="primary"
+                radius="full"
+                size="sm"
+                id="btn"
+              >
+                See Details
+              </Button>
+            </Link>
+            {isFavorite && (
+              <Button
+                className="text-tiny text-white font-bold mr-2"
+                color="error"
+                radius="full"
+                size="sm"
+                id="btn-delete"
+                onClick={handleDeleteFavorite}
+              >
+                Delete
+              </Button>
+            )}
+          </div>
         </CardFooter>
       </Card>
     </div>

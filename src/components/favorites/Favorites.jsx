@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth.context";
 import AudiovisualCard from "../audioVisualCard/AudiovisualCard";
 
 const Favorites = () => {
-  const { favorites, getFavorite } = useContext(AuthContext);
+  const { favorites, getFavorite, deleteFavorite } = useContext(AuthContext);
 
   useEffect(() => {
     getFavorite();
@@ -16,7 +16,12 @@ const Favorites = () => {
       <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-4">
         {favorites &&
           favorites.map((fav) => (
-            <AudiovisualCard key={fav._id} audiovisual={fav} />
+            <AudiovisualCard
+              key={fav._id}
+              audiovisual={fav}
+              deleteFavorite={deleteFavorite}
+              favorites={favorites}
+            />
           ))}
       </div>
     </div>
