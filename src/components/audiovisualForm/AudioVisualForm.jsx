@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import UploadWidget from "../widget/UploadWidget";
 import { AuthContext } from "../../context/auth.context";
 import "./audiovisualForm.css";
+import { validateCategory } from "../utils/ValisationUtils";
+import { useNavigate } from "react-router-dom";
 
 const AudioVisualForm = () => {
   const { token, createAudioVisuals } = useContext(AuthContext);
@@ -14,6 +16,9 @@ const AudioVisualForm = () => {
   const [date, setDate] = useState("");
   const [duration, setDuration] = useState();
   const [image, setImage] = useState("");
+  const [categorieError, setCategorieError] = useState("");
+  const [audiovisualCreated, setAudiovisualCreated] = useState(false);
+  const navigate = useNavigate();
 
   const allowedGenre = [
     "science-fiction",
@@ -33,7 +38,13 @@ const AudioVisualForm = () => {
   ];
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+
+    if (!validateCategory(categorie)) {
+      setCategorieError("Ça doit être 'film' ou 'série' ou 'animé'");
+      return;
+    }
+
     const responseCreateAudioVisual = await createAudioVisuals(
       token,
       categorie,
@@ -45,11 +56,17 @@ const AudioVisualForm = () => {
       image,
       duration
     );
-    console.log(responseCreateAudioVisual);
+
+    navigate("/");
   };
 
   return (
     <>
+      {audiovisualCreated && (
+        <div className="w-40 flex mx-auto popup mt-6 rounded-md p-3">
+          <p className="text-center">Audiovisuel crée</p>
+        </div>
+      )}
       <form
         className="sm:w-[500px] max-sm:w-[300px]"
         encType="multipart/form-data"
@@ -71,6 +88,7 @@ const AudioVisualForm = () => {
               setCategorie(e.target.value.toLowerCase());
             }}
           />
+          {categorieError && <p className="text-red-700">{categorieError}</p>}
         </div>
         <div className="flex flex-col gap-2 mb-3">
           <label className="label-form">

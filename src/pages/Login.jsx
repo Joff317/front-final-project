@@ -2,38 +2,24 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
-import {
-  isValidEmail,
-  isValidPassword,
-} from "../components/utils/ValisationUtils";
+import { isValidEmail } from "../components/utils/ValisationUtils";
 
 const Login = () => {
-  const { value, login, checkLogin, token } = useContext(AuthContext);
+  const { login, checkLogin, token } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Vérifiez si l'e-mail est vide ou n'est pas au bon format
-    if (!email.trim() || !isValidEmail(email)) {
-      setEmailError("L'email doit être rempli et au format valide.");
-      return;
-    }
-
-    if (password !== "login ok") {
-      setPasswordError("Le mot de passe n'est pas correct");
-    }
-
-    setEmailError("");
-    setPasswordError("");
-
     const loginResponse = await login(e, email, password);
     if (loginResponse === "login ok") {
       navigate("/dashboard");
+    }
+    if (!password || !email) {
+      return setError("L'email ou le mot de passe n'est pas correct");
     }
   };
 
@@ -65,7 +51,6 @@ const Login = () => {
               setEmail(e.target.value);
             }}
           />
-          {emailError && <p className="text-red-700">{emailError}</p>}
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="password">
@@ -79,7 +64,7 @@ const Login = () => {
               setPassword(e.target.value);
             }}
           />
-          {passwordError && <p className="text-red-700">{passwordError}</p>}
+          {error ? <p className="text-red-700">{error}</p> : ""}
         </div>
         <div className="flex justify-center mt-6">
           <button id="btn" className="px-12 w-32" type="submit">
