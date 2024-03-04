@@ -1,15 +1,45 @@
 import React, { useContext, useState } from "react";
 
 import { AuthContext } from "../context/auth.context";
-import navigate from "navigate";
+import {
+  isValidEmail,
+  isValidPassword,
+} from "../components/utils/ValisationUtils";
 
 const Signup = () => {
   const { signup } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pseudo, setPseudo] = useState("");
+  const [pseudoError, setPseudoError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!pseudo) {
+      setPseudoError("Le pseudo doit être rempli.");
+      return;
+    } else {
+      setPseudoError("");
+    }
+
+    if (!email.trim() || !isValidEmail(email)) {
+      setEmailError("L'email doit être rempli et au format valide.");
+      return;
+    } else {
+       setEmailError("");
+    }
+
+    if (!isValidPassword(password)) {
+      setPasswordError(
+        "Le mot de passe doit avoir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial."
+      );
+      return;
+    } else {
+      setPasswordError("");
+    }
+
     await signup(e, pseudo, email, password);
   };
   return (
@@ -33,6 +63,7 @@ const Signup = () => {
               setPseudo(e.target.value);
             }}
           />
+          {pseudoError && <p className="text-red-700">{pseudoError}</p>}
         </div>
         <div className="flex flex-col gap-2 mb-5">
           <label htmlFor="pseudo">
@@ -46,6 +77,7 @@ const Signup = () => {
               setEmail(e.target.value);
             }}
           />
+          {emailError && <p className="text-red-700">{emailError}</p>}
         </div>
         <div className="flex flex-col gap-2 mb-5">
           <label htmlFor="pseudo">
@@ -59,6 +91,7 @@ const Signup = () => {
               setPassword(e.target.value);
             }}
           />
+          {passwordError && <p className="text-red-700">{passwordError}</p>}
         </div>
         <div className="flex justify-center mt-6">
           <button id="btn" type="submit">
