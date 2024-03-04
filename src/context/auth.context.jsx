@@ -9,6 +9,7 @@ function AuthProviderWrapper(props) {
   const [user, setUser] = useState({});
   const [audioVisuals, setAudioVisuals] = useState([]);
   const [allAudioVisuals, setAllAudioVisuals] = useState([]);
+  const [audiovisualDetails, setAudioVisualDetails] = useState(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [comments, setComments] = useState([]);
   const [postComments, setPostComments] = useState([]);
@@ -132,6 +133,18 @@ function AuthProviderWrapper(props) {
       })
       .catch((error) => {
         console.log("Get audiovisual Failed : ", error.message);
+      });
+  };
+
+  const fetchAudioVisualDetails = (id) => {
+    axios
+      .get(`${BACK_API_URL}/api/audiovisual/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setAudioVisualDetails(res.data.audioVisual);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -335,6 +348,8 @@ function AuthProviderWrapper(props) {
         allAudioVisuals,
         setAllAudioVisuals,
         getAudioVisuals,
+        fetchAudioVisualDetails,
+        audiovisualDetails,
         getCommentary,
         comments,
         createCommentary,

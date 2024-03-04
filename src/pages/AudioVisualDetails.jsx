@@ -8,22 +8,17 @@ import AddFavorites from "../components/favorites/AddFavorites";
 
 const AudioVisualDetails = () => {
   let { id } = useParams();
-  const { getCommentary, isLoggedIn, checkLogin, user, getUser } =
-    useContext(AuthContext);
+  const {
+    getCommentary,
+    isLoggedIn,
+    checkLogin,
+    user,
+    getUser,
+    fetchAudioVisualDetails,
+    audiovisualDetails,
+  } = useContext(AuthContext);
 
-  const [audiovisualDetails, setAudioVisualDetails] = useState(null);
-  const BACK_API_URL = process.env.API_URL;
-  const fetchAudioVisualDetails = () => {
-    axios
-      .get(`${BACK_API_URL}/api/audiovisual/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        setAudioVisualDetails(res.data.audioVisual);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  console.log(audiovisualDetails);
 
   useEffect(() => {
     checkLogin();
@@ -32,17 +27,12 @@ const AudioVisualDetails = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(user.favorites);
-  //   // console.log(audiovisualDetails._id);
-  //   // console.log(
-  //   //   // user.favorites.some((fav) => fav._id === audiovisualDetails.id)
-  //   // );
-  // }, [user]);
-
   useEffect(() => {
-    fetchAudioVisualDetails();
-  }, [id]);
+    // if (audiovisualDetails && audiovisualDetails.id) {
+    //   fetchAudioVisualDetails(audiovisualDetails.id);
+    // }
+    fetchAudioVisualDetails(id);
+  }, []);
 
   return (
     <div className="min-h-full pt-4 w-full flex flex-col justify-center items-center">
