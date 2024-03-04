@@ -38,8 +38,8 @@ const AudioVisualForm = () => {
   ];
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-
+    e.preventDefault();
+    console.log("test création audiovisuel");
     if (!validateCategory(categorie)) {
       setCategorieError("Ça doit être 'film' ou 'série' ou 'animé'");
       return;
@@ -57,16 +57,23 @@ const AudioVisualForm = () => {
       duration
     );
 
-    navigate("/");
+    setAudiovisualCreated(true);
+
+    setTimeout(() => {
+      navigate("/");
+    }, 5000);
   };
 
   return (
     <>
-      {audiovisualCreated && (
-        <div className="w-40 flex mx-auto popup mt-6 rounded-md p-3">
-          <p className="text-center">Audiovisuel crée</p>
+      <div className="sm:w-[500px] max-sm:w-[300px] flex flex-col mb-2">
+        <label className="label-form">
+          Image <span className="text-red-700">*</span> :
+        </label>
+        <div className="flex justify-center">
+          <UploadWidget onImageChange={setImage} />
         </div>
-      )}
+      </div>
       <form
         className="sm:w-[500px] max-sm:w-[300px]"
         encType="multipart/form-data"
@@ -188,19 +195,17 @@ const AudioVisualForm = () => {
             }}
           />
         </div>
-        <div className="flex flex-col mb-2">
-          <label className="label-form">
-            Image <span className="text-red-700">*</span> :
-          </label>
-          <div className="flex justify-center">
-            <UploadWidget onImageChange={setImage} />
-          </div>
-        </div>
         <div className="flex justify-center mt-6">
           <button type="submit" id="btn">
             Créer un Audiovisuel
           </button>
         </div>
+
+        {audiovisualCreated && (
+          <div className="w-40 flex mx-auto popup mt-6 rounded-md p-3">
+            <p className="text-center mx-auto">Audiovisuel crée</p>
+          </div>
+        )}
       </form>
     </>
   );
