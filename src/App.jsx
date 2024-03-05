@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
-import AudioVisualDetails from "./pages/AudioVisualDetails";
+import AudioVisualDetails from "./pages/audioVisualDetails/AudioVisualDetails";
 import Nav from "./components/navbar/Nav";
 import CreateAudiovisual from "./pages/CreateAudiovisual";
 

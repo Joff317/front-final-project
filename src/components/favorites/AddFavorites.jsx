@@ -5,7 +5,7 @@ import AddFavoritePopup from "./popupConfirmation/addPopup/AddFavoritePopup";
 const AddFavorites = (props) => {
   const { addAudioVisualsToFavorites, checkLogin, favorites } =
     useContext(AuthContext);
-  console.log(addAudioVisualsToFavorites);
+//   console.log(addAudioVisualsToFavorites);
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {

@@ -140,7 +140,7 @@ function AuthProviderWrapper(props) {
     axios
       .get(`${BACK_API_URL}/api/audiovisual/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAudioVisualDetails(res.data.audioVisual);
       })
       .catch((err) => {
@@ -247,7 +247,7 @@ function AuthProviderWrapper(props) {
         },
       })
       .then((res) => {
-        console.log(res.data.comments);
+        console.log("COMMENTARYYYYY", res.data);
         setComments(res.data.comments);
       })
       .catch((err) => console.log(err));

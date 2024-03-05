@@ -12,8 +12,14 @@ import logo from "../../assets/logo.jpg";
 import { NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import "./Nav.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/fontawesome-free-solid";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+// import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+
 const Nav = () => {
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn, logout, user } = useContext(AuthContext);
+  console.log(user);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
 
@@ -56,9 +62,9 @@ const Nav = () => {
         />
         <NavLink to="/">
           <NavbarBrand>
-            <img src={logo} className="w-12 h-12 rounded-xl mr-2" />
+            {/* <img src={logo} className="w-12 h-12 rounded-xl mr-2" /> */}
             <p className="navitem" id="home-item">
-              Social Watch
+              <i className="fas fa-house fa-xl"></i>
             </p>
           </NavbarBrand>
         </NavLink>
@@ -85,7 +91,7 @@ const Nav = () => {
                 location.pathname === "/dashboard" ? "active" : ""
               }`}
             >
-              Profile
+              <FontAwesomeIcon icon={faUser} size="xl" />
             </NavLink>
           </NavbarItem>
         )}
@@ -123,7 +129,7 @@ const Nav = () => {
               id="home-item"
               className="navcolor navitem"
             >
-              Logout
+              <i className="fa fa-arrow-right-from-bracket fa-xl"></i>
             </button>
           </NavbarItem>
         )}

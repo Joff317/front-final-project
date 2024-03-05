@@ -76,6 +76,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: #0b0b16;
+
   color: #E0F1ED;
 }
 
@@ -86,6 +87,6 @@ body {
   cursor: pointer;
 }
 
-#link{
+#link {
   color: rgb(108, 13, 13);
 }
