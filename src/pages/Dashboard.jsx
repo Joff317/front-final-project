@@ -26,7 +26,7 @@ export default function Dashboard() {
           Vous devez être connecté pour accéder à votre profil{" "}
         </h2>
         <button id="btn" onClick={() => navigate("/login")}>
-          Go to login page
+          Aller à la page de connexion
         </button>
       </div>
     );
@@ -34,10 +34,9 @@ export default function Dashboard() {
 
   // console.log(user);
   return (
-    <section>
-      <h1>Welcome to user profile</h1>
-      <h2>Bienvenue {user && user.pseudo}</h2>
+    <div className="min-h-full pt-4 w-full flex flex-col items-center justify-center mb-6">
+      <h2 className="sm:text-2xl text-xl uppercase h2 mb-4">Bienvenue {user && user.pseudo}</h2>
       {user.favorites && <Favorites user={user} />}
-    </section>
+    </div>
   );
 }

@@ -20,10 +20,10 @@ const Favorites = () => {
   };
 
   return (
-    <div>
-      <h1>Vos Favoris : </h1>
+    <>
+      <h1 className="sm:text-xl text-lg uppercase h2 mb-6">Mes Favoris : </h1>
 
-      <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
         {favorites &&
           favorites.map((fav) => (
             <AudiovisualCard
@@ -36,7 +36,7 @@ const Favorites = () => {
       </div>
 
       {deletePopup && <DeleteFavoritePopup />}
-    </div>
+    </>
   );
 };
 

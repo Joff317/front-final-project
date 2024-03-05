@@ -1,8 +1,18 @@
-#title-header{
-   -webkit-text-stroke: 1px rgb(13, 14, 13);
+#title-header {
+   -webkit-text-stroke: 0.5px rgba(24, 3, 5, 0.134);
    font: bold;
    font-size: 20px;
-   background: rgba(11, 11, 11, 0.216);
+   background: rgba(11, 11, 11, 0.825);
    border-radius: 10px;
-   backdrop-filter: blur(10px);
+   color: rgb(108, 13, 13);
+   backdrop-filter: blur(30px);
+}
+
+.card-lil-title {
+   color: rgb(108, 13, 13);
+   text-decoration: underline 2px;
+}
+
+.visual-card{
+   
 }
