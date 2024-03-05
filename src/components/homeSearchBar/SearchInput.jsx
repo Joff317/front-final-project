@@ -18,10 +18,10 @@ const SearchInput = (props) => {
           ],
           innerWrapper: "bg-transparent",
           inputWrapper: [
-            "shadow-xl",
-            "bg-default-200/50",
-            "dark:bg-default/60",
-            "backdrop-blur-xl",
+            // "shadow-xl",
+            // "bg-default-200/50",
+            // "dark:bg-default/60",
+            // "backdrop-blur-xl",
             "backdrop-saturate-200",
             "hover:bg-default-200/70",
             "dark:hover:bg-default/70",
@@ -30,8 +30,8 @@ const SearchInput = (props) => {
             "!cursor-text",
           ],
         }}
-        className="text-black w-[16em] mb-4"
-        placeholder="Type to search..."
+        className="text-black w-[16em] mb-4 bg-black rounded-xl"
+        placeholder="Tapez pour rechercher"
         startContent={
           <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
         }
