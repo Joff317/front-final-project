@@ -1,0 +1,14 @@
+.audiovisual-title{
+   color: rgb(108, 13, 13);
+}
+
+.genre-list{
+   border: 1px solid;
+   border-radius: 5px;
+   border-color: rgb(108, 13, 13);
+}
+
+.card-details{
+   background-color: #03010a;
+   border-radius: 10px;
+}
