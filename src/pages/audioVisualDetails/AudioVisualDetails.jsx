@@ -59,11 +59,11 @@ const AudioVisualDetails = () => {
         <h3 className="text-center uppercase audiovisual-title text-2xl">
           Genres :
         </h3>
-        <ul className="genre-list p-2 mt-2 text-xl">
+        <ul className="genre-list p-2 mt-2 text-xl flex flex-row max-sm:flex-col">
           {audiovisualDetails &&
             audiovisualDetails.genre &&
             audiovisualDetails.genre.map((genre, index) => (
-              <li key={index}>{genre}</li>
+              <li id="list" className="max-sm:my-2 px-3 py-2 mx-2 rounded-xl" key={index}>{genre}</li>
             ))}
         </ul>
       </div>
