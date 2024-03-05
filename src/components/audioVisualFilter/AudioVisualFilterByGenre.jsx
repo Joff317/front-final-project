@@ -26,9 +26,18 @@ const AudioVisualFilterByGenre = ({ handleGenreChange }) => {
   };
 
   return (
-    <div className="mb-6">
-      <label htmlFor="visualType">Choisir le genre :</label>
-      <select id="visualType" onChange={handleChange}>
+    <div className="mb-8">
+      <label
+        htmlFor="visualType"
+        className="block text-gray-500 text-md font-bold mb-2"
+      >
+        Choisir le genre :
+      </label>
+      <select
+        id="visualType"
+        className="filter bg-black border border-white text-gray-200 py-2 px-2 rounded focus:outline-none transition duration-300"
+        onChange={handleChange}
+      >
         {genres.map((genre, index) => (
           <option key={index} value={genre}>
             {genre.charAt(0).toUpperCase() + genre.slice(1)}
