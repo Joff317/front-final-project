@@ -54,7 +54,7 @@ const Nav = () => {
       {isLoggedIn && <button onClick={logout}>Logout</button>} */
   }
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="navbar" maxWidth="full">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="navbar"  id="nav" maxWidth="full">
       <NavbarContent className="max-w-[600px]">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

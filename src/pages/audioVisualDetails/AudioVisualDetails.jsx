@@ -63,7 +63,13 @@ const AudioVisualDetails = () => {
           {audiovisualDetails &&
             audiovisualDetails.genre &&
             audiovisualDetails.genre.map((genre, index) => (
-              <li id="list" className="max-sm:my-2 px-3 py-2 mx-2 rounded-xl" key={index}>{genre}</li>
+              <li
+                id="list"
+                className="max-sm:my-2 px-3 py-2 mx-2 rounded-xl"
+                key={index}
+              >
+                {genre}
+              </li>
             ))}
         </ul>
       </div>

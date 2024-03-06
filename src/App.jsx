@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import AudioVisualDetails from "./pages/audioVisualDetails/AudioVisualDetails";
 import Nav from "./components/navbar/Nav";
 import CreateAudiovisual from "./pages/CreateAudiovisual";
+import NotFound from "./pages/notFound/NotFound";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/signUp" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-audiovisual" element={<CreateAudiovisual />} />
-        <Route path="/:id" element={<AudioVisualDetails />} />
+        <Route path="/details/:id" element={<AudioVisualDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

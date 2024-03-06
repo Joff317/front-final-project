@@ -71,7 +71,7 @@ const AudiovisualCard = (props) => {
             </div>
           </div>
           <div className="flex flex-col">
-            <Link to={`/${audiovisual._id}`}>
+            <Link to={`/details/${audiovisual._id}`}>
               <Button
                 className="text-tiny  text-white font-bold"
                 color="primary"
