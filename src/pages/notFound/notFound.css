@@ -1,0 +1,14 @@
+.background-container {
+   width: 100%;
+   background-color: #0b0b16;
+   color: rgb(255, 255, 255);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ } 
+ 
+/* .container {
+   margin-top: 20px auto;
+   max-width: 600px;
+   width: 50vw;
+ } */
