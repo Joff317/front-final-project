@@ -20,26 +20,28 @@ const PostCommentary = (props) => {
   if (isLoggedIn) {
     return (
       <div>
-        <h2>Poster un commentaire</h2>
+        <h2 className="mb-2 mt-8 text-xl">Poster un commentaire</h2>
 
         <form
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
-          <div>
-            <label>Commentaire: </label>
-            <input
-              type="text"
-              value={text}
-              onChange={(e) => {
-                setText(e.target.value);
-              }}
-            />
+          <div className="flex flex-row">
+            <div className="px-2">
+              <input
+                className="px-1 mr-2 update-input text-white rounded-md"
+                type="text"
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value);
+                }}
+              />
+            </div>
+            <button className="rounded px-2" type="submit">
+            <i className="fa fa-check fa-lg"></i>
+            </button>
           </div>
-          <button className="bg-purple-500 rounded px-2" type="submit">
-            Poster un commentaire
-          </button>
         </form>
       </div>
     );
