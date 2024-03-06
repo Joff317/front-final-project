@@ -15,9 +15,9 @@ const AudiovisualCard = (props) => {
   return (
     <div key={audiovisual._id} className="relative col-span-1 mx-3 px-2">
       {isFavorite && (
-        <div className="absolute z-[100000]">
+        <div className="absolute z-[15]">
           <Button
-            className="text-tiny text-white font-bold mr-2 top-[-10px] right-[9px] z-[100000] "
+            className="text-tiny text-white font-bold mr-2 top-[-10px] right-[9px] "
             color="error"
             radius="full"
             size="sm"
