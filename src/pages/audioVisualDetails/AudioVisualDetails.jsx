@@ -101,14 +101,16 @@ const AudioVisualDetails = () => {
           <p>{audiovisualDetails && audiovisualDetails.duration} mn</p>
         </div>
       </div>
-      <div>
-        {isLoggedIn && <Commentary id={id} updateComments={getCommentary} />}
-      </div>
+      <div className="commentary px-6 py-3">
+        <div>
+          {isLoggedIn && <Commentary id={id} updateComments={getCommentary} />}
+        </div>
 
-      <div>
-        {isLoggedIn && (
-          <PostCommentary id={id} updateComments={getCommentary} />
-        )}
+        <div>
+          {isLoggedIn && (
+            <PostCommentary id={id} updateComments={getCommentary} />
+          )}
+        </div>
       </div>
 
       <div className="mt-6">

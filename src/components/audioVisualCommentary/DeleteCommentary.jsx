@@ -12,11 +12,11 @@ const DeleteCommentary = (props) => {
   return (
     <>
       {user._id === comment.user._id ? (
-        <>
-          <button onClick={() => handleDelete(props._id, comment._id)}>
-            Supprimer le commentaire
+        <div className="flex justify-center">
+          <button id="delete-commentary" onClick={() => handleDelete(props._id, comment._id)}>
+          X
           </button>
-        </>
+        </div>
       ) : (
         ""
       )}

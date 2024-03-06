@@ -140,7 +140,7 @@ function AuthProviderWrapper(props) {
     axios
       .get(`${BACK_API_URL}/api/audiovisual/${id}`)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setAudioVisualDetails(res.data.audioVisual);
       })
       .catch((err) => {
@@ -237,11 +237,11 @@ function AuthProviderWrapper(props) {
       .catch((err) => console.log(err));
   };
 
-  const getCommentary = async (audioVisualId) => {
-    console.log("getCommentary", audioVisualId);
+  const getCommentary = async (audiovisualId) => {
+    console.log("getCommentary", audiovisualId);
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${BACK_API_URL}/api/commentary/${audioVisualId}`, {
+      .get(`${BACK_API_URL}/api/commentary/${audiovisualId}`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
@@ -253,11 +253,11 @@ function AuthProviderWrapper(props) {
       .catch((err) => console.log(err));
   };
 
-  const createCommentary = (audioVisualId, text) => {
+  const createCommentary = (audiovisualId, text) => {
     const storedToken = localStorage.getItem("authToken");
     axios
       .post(
-        `${BACK_API_URL}/api/commentary/${audioVisualId}`,
+        `${BACK_API_URL}/api/commentary/${audiovisualId}`,
         {
           text,
         },
