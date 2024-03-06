@@ -237,11 +237,11 @@ function AuthProviderWrapper(props) {
       .catch((err) => console.log(err));
   };
 
-  const getCommentary = async (audiovisualId) => {
-    console.log("getCommentary", audiovisualId);
+  const getCommentary = async (audioVisualId) => {
+    console.log("getCommentary", audioVisualId);
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${BACK_API_URL}/api/commentary/${audiovisualId}`, {
+      .get(`${BACK_API_URL}/api/commentary/${audioVisualId}`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },

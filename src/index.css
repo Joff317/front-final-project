@@ -91,6 +91,10 @@ body {
   border: 1px solid #E0F1ED;
 }
 
+/* .h2{
+  filter: drop-shadow(5px 5px 10px rgba(129, 14, 14, 0.144))
+} */
+
 #card-btn {
   background-color: #03010a;
   padding: 8px 10px;
