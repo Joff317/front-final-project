@@ -14,7 +14,7 @@ const PostCommentary = (props) => {
     const audioVisualId = props.id;
     await createCommentary(audioVisualId, text);
     setText("");
-    props.updateComments();
+    props.updateComments(audioVisualId);
   };
 
   if (isLoggedIn) {

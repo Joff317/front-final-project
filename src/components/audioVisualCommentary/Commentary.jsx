@@ -5,14 +5,14 @@ import DeleteCommentary from "./DeleteCommentary";
 import "./commentary.css";
 
 const Commentary = (props) => {
-  const { comments, checkLogin, user, getUser } = useContext(AuthContext);
+  const {getCommentary, comments, checkLogin, user, getUser } = useContext(AuthContext);
 
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    props.updateComments(props.id);
+    getCommentary(props.id);
     // console.log(props.updateComments());
-  }, []);
+  }, [props.id]);
 
   useEffect(() => {
     checkLogin();

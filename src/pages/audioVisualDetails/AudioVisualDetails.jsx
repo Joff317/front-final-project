@@ -30,7 +30,7 @@ const AudioVisualDetails = () => {
 
   useEffect(() => {
     fetchAudioVisualDetails(id);
-  }, []);
+  }, [id]);
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "numeric", day: "numeric" };
@@ -101,27 +101,33 @@ const AudioVisualDetails = () => {
           <p>{audiovisualDetails && audiovisualDetails.duration} mn</p>
         </div>
       </div>
-      <div className="commentary px-6 py-3">
-        <div>
-          {isLoggedIn && <Commentary id={id} updateComments={getCommentary} />}
-        </div>
+      {isLoggedIn && (
+        <>
+          <div className="commentary px-6 py-3">
+            <div>
+              {isLoggedIn && (
+                <Commentary id={id} updateComments={getCommentary} />
+              )}
+            </div>
 
-        <div>
-          {isLoggedIn && (
-            <PostCommentary id={id} updateComments={getCommentary} />
-          )}
-        </div>
-      </div>
+            <div>
+              {isLoggedIn && (
+                <PostCommentary id={id} updateComments={getCommentary} />
+              )}
+            </div>
+          </div>
 
-      <div className="mt-6">
-        {isLoggedIn &&
-        user.favorites &&
-        user.favorites.some((fav) => fav._id === audiovisualDetails._id) ? (
-          <p>Film déjà présent dans vos favoris</p>
-        ) : isLoggedIn ? (
-          <AddFavorites id={id} />
-        ) : null}
-      </div>
+          <div className="mt-6">
+            {isLoggedIn &&
+            user.favorites &&
+            user.favorites.some((fav) => fav._id === audiovisualDetails._id) ? (
+              <p>Film déjà présent dans vos favoris</p>
+            ) : isLoggedIn ? (
+              <AddFavorites id={id} />
+            ) : null}
+          </div>
+        </>
+      )}
     </div>
   );
 };
