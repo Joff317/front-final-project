@@ -54,7 +54,12 @@ const Nav = () => {
       {isLoggedIn && <button onClick={logout}>Logout</button>} */
   }
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="navbar"  id="nav" maxWidth="full">
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className="navbar"
+      id="nav"
+      maxWidth="full"
+    >
       <NavbarContent className="max-w-[600px]">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -135,31 +140,35 @@ const Nav = () => {
         )}
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => {
-          if (item.isLogoutButton) {
-            // Conditionally render Logout button based on isLoggedIn
-            return (
-              isLoggedIn && (
-                <NavbarMenuItem key={`${item}-${index}`}>
-                  <button onClick={logout} className="w-full text-left">
-                    {item.name}
-                  </button>
-                </NavbarMenuItem>
-              )
-            );
-          } else {
-            // Conditionally render NavLink based on isLoggedIn
-            return (
-              (!isLoggedIn || item.navlink === "/create-audiovisual") && (
-                <NavbarMenuItem key={`${item}-${index}`}>
-                  <NavLink className="w-full" to={item.navlink} size="lg">
-                    {item.name}
-                  </NavLink>
-                </NavbarMenuItem>
-              )
-            );
-          }
-        })}
+      {menuItems.map((item, index) => {
+        if (item.isLogoutButton) {
+          // Conditionally render Logout button based on isLoggedIn
+          return (
+            isLoggedIn && (
+              <NavbarMenuItem key={`${item}-${index}`}>
+                <button onClick={logout} className="w-full text-left">
+                  {item.name}
+                </button>
+              </NavbarMenuItem>
+            )
+          );
+        } else if ((item.navlink === "/login" || item.navlink === "/signup") && isLoggedIn) {
+          // Exclude the links to login and signup when the user is logged in
+          return null;
+        } else if (item.navlink === "/dashboard" && !isLoggedIn) {
+          // Exclude the link to the profile if the user is not logged in
+          return null;
+        } else {
+          // Conditionally render NavLink based on isLoggedIn
+          return (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <NavLink className="w-full" to={item.navlink} size="lg">
+                {item.name}
+              </NavLink>
+            </NavbarMenuItem>
+          );
+        }
+      })}
       </NavbarMenu>
     </Navbar>
   );
