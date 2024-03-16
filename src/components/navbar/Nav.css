@@ -6,6 +6,17 @@
 
 #home-item {
    color: rgb(108, 13, 13);
+   /* -webkit-text-stroke: 0.1px rgba(241, 236, 236, 0.798);
+   font-size: 20px; */
+}
+
+#home-item:hover {
+   transform: scale(1.1);
+}
+
+
+#home-item:hover {
+   transition: -webkit-text-stroke 0.3s ease;
 }
 
 .navbar {

@@ -22,7 +22,7 @@ const AudioVisualFilter = ({ handleTypeChange }) => {
         <option value="">Tout</option>
         <option value="film">Films</option>
         <option value="serie">Séries</option>
-        <option value="anime">Animés</option>
+        <option value="animé">Animés</option>
       </select>
     </div>
   );

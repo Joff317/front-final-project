@@ -96,7 +96,7 @@ const Nav = () => {
                 location.pathname === "/dashboard" ? "active" : ""
               }`}
             >
-              <FontAwesomeIcon icon={faUser} size="xl" />
+               <i className="fa fa-user fa-xl"></i>
             </NavLink>
           </NavbarItem>
         )}

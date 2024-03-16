@@ -1,5 +1,5 @@
 #title-header {
-   -webkit-text-stroke: 0.5px rgba(24, 3, 5, 0.134);
+   /* -webkit-text-stroke: 1px rgba(241, 236, 236, 0.798); */
    font: bold;
    font-size: 20px;
    background: rgba(11, 11, 11, 0.825);
@@ -12,3 +12,41 @@
    color: rgb(108, 13, 13);
    text-decoration: underline 2px;
 }
+
+
+/* /* .card-container {
+  /* Vos styles normaux pour la carte ici */
+
+  /* Ajoutez une transition pour créer une animation fluide */
+  /* transition: transform 0.3s ease-in-out; */
+/* } */
+
+/* .card-container:hover {
+  /* Appliquez la transformation au survol de la carte */
+  /* transform: translate(0, -15px);  */
+/* }   */
+
+.card-container {
+   /* Vos styles normaux pour la carte ici */
+ 
+   /* Ajoutez une transition pour créer une animation fluide */
+   transition: transform 0.3s ease-in-out;
+ }
+ 
+ .card-container:hover {
+   /* Définissez l'animation au survol de la carte */
+   animation: shake 0.5s ease-in-out;
+ }
+ 
+ /* Définissez les keyframes pour l'animation de secousse */
+ @keyframes shake {
+   0%, 100% {
+     transform: translateX(0);
+   }
+   25%, 75% {
+     transform: translateX(-5px); /* Ajustez la valeur selon vos besoins */
+   }
+   50% {
+     transform: translateX(5px); /* Ajustez la valeur selon vos besoins */
+   }
+ }

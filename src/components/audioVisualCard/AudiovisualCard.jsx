@@ -13,7 +13,10 @@ const AudiovisualCard = (props) => {
   // };
 
   return (
-    <div key={audiovisual._id} className="relative col-span-1 mx-3 px-2">
+    <div
+      key={audiovisual._id}
+      className="card-container relative col-span-1 mx-3 px-2"
+    >
       {isFavorite && (
         <div className="absolute z-[15]">
           <Button
@@ -34,7 +37,7 @@ const AudiovisualCard = (props) => {
       >
         <CardHeader className="absolute z-10 top-1 items-start ">
           <h4
-            className=" font-bold text-lg py-1 px-2 mx-auto overflow-x-auto whitespace-nowrap card-header-title"
+            className=" font-dancing-script text-lg py-1 px-2 mx-auto overflow-x-auto whitespace-nowrap card-header-title"
             id="title-header"
           >
             {audiovisual.title}
