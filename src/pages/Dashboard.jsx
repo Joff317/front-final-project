@@ -35,7 +35,7 @@ export default function Dashboard() {
   // console.log(user);
   return (
     <div className="min-h-full pt-4 w-full flex flex-col items-center justify-center mb-6">
-      <h2 className="sm:text-2xl text-xl uppercase h2 mb-4">
+      <h2 className="sm:text-2xl text-xl uppercase h2 mb-4 font-dancing-script">
         Bienvenue {user && user.pseudo}
       </h2>
       {!user.favorites || user.favorites.length <= 0 ? (

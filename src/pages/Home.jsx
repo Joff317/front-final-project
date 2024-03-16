@@ -5,6 +5,7 @@ import AudiovisualCard from "../components/audioVisualCard/AudiovisualCard";
 import AudioVisualFilterByGenre from "../components/audioVisualFilter/AudioVisualFilterByGenre";
 import AudioVisualFilter from "../components/audioVisualFilter/AudioVisualFilter";
 import SearchBar from "../components/homeSearchBar/SearchBar";
+import AnimatedTitle from "../components/animation/AnimatedTitle";
 
 const Home = (props) => {
   const {
@@ -44,7 +45,7 @@ const Home = (props) => {
 
   return (
     <div className="min-h-full pt-4 w-full flex flex-col items-center justify-center mb-6">
-      <h1 className="sm:text-2xl text-xl uppercase h2 mb-4">Bienvenue sur Social Watch</h1>
+      <AnimatedTitle />
 
       <SearchBar onSearch={handleSearch} />
 

@@ -43,7 +43,7 @@ const AudioVisualDetails = () => {
 
   return (
     <div className="min-h-full p-4 flex flex-col items-center mx-auto gap-4">
-      <h1 className="text-4xl mb-8 text-center audiovisual-title">
+      <h1 className="text-4xl mb-8 text-center audiovisual-title font-pacifico">
         {audiovisualDetails && audiovisualDetails.title}
       </h1>
 
@@ -56,7 +56,7 @@ const AudioVisualDetails = () => {
       </div>
 
       <div className="flex flex-col mt-3 mb-3">
-        <h3 className="text-center uppercase audiovisual-title text-2xl">
+        <h3 className="text-center uppercase audiovisual-title text-2xl font-dancing-script">
           Genres :
         </h3>
         <ul className="genre-list p-2 mt-2 text-xl flex flex-row max-sm:flex-col">
@@ -75,7 +75,7 @@ const AudioVisualDetails = () => {
       </div>
 
       <div className="px-2 mb-3 flex flex-col">
-        <h3 className="audiovisual-title uppercase text-2xl text-center mb-2">
+        <h3 className="audiovisual-title uppercase text-2xl text-center mb-2 font-dancing-script">
           Synopsis :
         </h3>
         <p className="text-xl px-2">

@@ -21,7 +21,7 @@ const Favorites = () => {
 
   return (
     <>
-      <h1 className="sm:text-xl text-lg uppercase h2 mb-6">Mes Favoris : </h1>
+      <h1 className="sm:text-xl text-lg uppercase h2 mb-6 font-dancing-script">Mes Favoris : </h1>
 
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
         {favorites &&
