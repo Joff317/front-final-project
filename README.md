@@ -11,7 +11,7 @@ To get started with the project, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/Joff317/social-moovie-and-co-back-end
+   git clone https://github.com/Joff317/front-final-project.git
 
 ## Backend
 
