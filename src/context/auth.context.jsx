@@ -11,11 +11,11 @@ function AuthProviderWrapper(props) {
   // const [allAudioVisuals, setAllAudioVisuals] = useState([]);
   // const [audiovisualDetails, setAudioVisualDetails] = useState(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [postComments, setPostComments] = useState([]);
+  // const [comments, setComments] = useState([]);
+  // const [postComments, setPostComments] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [addFavorite, setAddFavorite] = useState();
-  const [updateComments, setUpdateComments] = useState();
+  // const [updateComments, setUpdateComments] = useState();
   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
   const BACK_API_URL = process.env.API_URL;
@@ -183,59 +183,59 @@ function AuthProviderWrapper(props) {
   //   }
   // };
 
-  const addAudioVisualsToFavorites = (audioVisualId) => {
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .post(
-        `${BACK_API_URL}/api/users/addFavorite/${audioVisualId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log("favoris ajouté");
-        setShowNotification(true);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const addAudioVisualsToFavorites = (audioVisualId) => {
+  //   const storedToken = localStorage.getItem("authToken");
+  //   axios
+  //     .post(
+  //       `${BACK_API_URL}/api/users/addFavorite/${audioVisualId}`,
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${storedToken}`,
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log("favoris ajouté");
+  //       setShowNotification(true);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  const getFavorite = () => {
-    const storedToken = localStorage.getItem("authToken");
-    return axios
-      .get(`${BACK_API_URL}/api/users/favorites`, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setFavorites(res.data.favorite);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des favoris :", error);
-        throw error;
-      });
-  };
+  // const getFavorite = () => {
+  //   const storedToken = localStorage.getItem("authToken");
+  //   return axios
+  //     .get(`${BACK_API_URL}/api/users/favorites`, {
+  //       headers: {
+  //         Authorization: `Bearer ${storedToken}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setFavorites(res.data.favorite);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erreur lors de la récupération des favoris :", error);
+  //       throw error;
+  //     });
+  // };
 
-  const deleteFavorite = (audioVisualId) => {
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .delete(`${BACK_API_URL}/api/users/removeFavorite/${audioVisualId}`, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      })
-      .then((res) => {
-        setFavorites((prevFav) =>
-          prevFav.filter((fav) => fav._id !== audioVisualId)
-        );
-        setShowNotification(true);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const deleteFavorite = (audioVisualId) => {
+  //   const storedToken = localStorage.getItem("authToken");
+  //   axios
+  //     .delete(`${BACK_API_URL}/api/users/removeFavorite/${audioVisualId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${storedToken}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setFavorites((prevFav) =>
+  //         prevFav.filter((fav) => fav._id !== audioVisualId)
+  //       );
+  //       setShowNotification(true);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   // const getCommentary = async (audioVisualId) => {
   //   console.log("getCommentary", audioVisualId);
@@ -359,11 +359,11 @@ function AuthProviderWrapper(props) {
         // deleteCommentary,
         // getFilteredAudioVisuals,
         // searchAudioVisuals,
-        addAudioVisualsToFavorites,
-        addFavorite,
-        getFavorite,
-        favorites,
-        deleteFavorite,
+        // addAudioVisualsToFavorites,
+        // addFavorite,
+        // getFavorite,
+        // favorites,
+        // deleteFavorite,
       }}
     >
       {props.children}

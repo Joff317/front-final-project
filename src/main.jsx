@@ -6,13 +6,16 @@ import { AuthProviderWrapper } from "./context/auth.context.jsx";
 import "./index.css";
 import { AudioVisualProviderWrapper } from "./context/audiovisual.context.jsx";
 import { CommentariesProviderWrapper } from "./context/commentaries.context.jsx";
+import { FavoritesProviderWrapper } from "./context/favorites.context.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProviderWrapper>
       <AudioVisualProviderWrapper>
         <CommentariesProviderWrapper>
-          <App />
+          <FavoritesProviderWrapper>
+            <App />
+          </FavoritesProviderWrapper>
         </CommentariesProviderWrapper>
       </AudioVisualProviderWrapper>
     </AuthProviderWrapper>

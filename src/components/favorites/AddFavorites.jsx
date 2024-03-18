@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import AddFavoritePopup from "./popupConfirmation/addPopup/AddFavoritePopup";
+import { FavoritesContext } from "../../context/favorites.context";
 
 const AddFavorites = (props) => {
-  const { addAudioVisualsToFavorites, checkLogin, favorites } =
-    useContext(AuthContext);
-//   console.log(addAudioVisualsToFavorites);
+  const { checkLogin } = useContext(AuthContext);
+
+  const { addAudioVisualsToFavorites } = useContext(FavoritesContext);
+  //   console.log(addAudioVisualsToFavorites);
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
