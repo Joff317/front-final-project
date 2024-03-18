@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { CommentariesContext } from "../../context/commentaries.context";
 
 const PostCommentary = (props) => {
-  const { isLoggedIn, checkLogin, createCommentary } = useContext(AuthContext);
+  const { isLoggedIn, checkLogin } = useContext(AuthContext);
+  const { createCommentary } = useContext(CommentariesContext);
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const PostCommentary = (props) => {
               />
             </div>
             <button className="rounded px-2" type="submit">
-            <i className="fa fa-check fa-lg"></i>
+              <i className="fa fa-check fa-lg"></i>
             </button>
           </div>
         </form>

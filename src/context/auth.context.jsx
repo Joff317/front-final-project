@@ -7,9 +7,9 @@ const AuthContext = createContext();
 function AuthProviderWrapper(props) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
-  const [audioVisuals, setAudioVisuals] = useState([]);
-  const [allAudioVisuals, setAllAudioVisuals] = useState([]);
-  const [audiovisualDetails, setAudioVisualDetails] = useState(null);
+  // const [audioVisuals, setAudioVisuals] = useState([]);
+  // const [allAudioVisuals, setAllAudioVisuals] = useState([]);
+  // const [audiovisualDetails, setAudioVisualDetails] = useState(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [comments, setComments] = useState([]);
   const [postComments, setPostComments] = useState([]);
@@ -93,95 +93,95 @@ function AuthProviderWrapper(props) {
       });
   };
 
-  const createAudioVisuals = (
-    userToken,
-    categorie,
-    synopsis,
-    title,
-    genre,
-    author,
-    date,
-    image,
-    duration
-  ) => {
-    axios
-      .post(
-        `${BACK_API_URL}/api/audiovisual/`,
-        { categorie, synopsis, title, genre, author, date, image, duration },
-        {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        setAudioVisuals(res.data.audioVisuals);
-        return "Audiovisual created";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const createAudioVisuals = (
+  //   userToken,
+  //   categorie,
+  //   synopsis,
+  //   title,
+  //   genre,
+  //   author,
+  //   date,
+  //   image,
+  //   duration
+  // ) => {
+  //   axios
+  //     .post(
+  //       `${BACK_API_URL}/api/audiovisual/`,
+  //       { categorie, synopsis, title, genre, author, date, image, duration },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${userToken}`,
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //       setAudioVisuals(res.data.audioVisuals);
+  //       return "Audiovisual created";
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const getAudioVisuals = () => {
-    axios
-      .get(`${BACK_API_URL}/api/audiovisual/`)
-      .then((res) => {
-        console.log(res.data);
-        setAllAudioVisuals(res.data.audioVisuals);
-      })
-      .catch((error) => {
-        console.log("Get audiovisual Failed : ", error.message);
-      });
-  };
+  // const getAudioVisuals = () => {
+  //   axios
+  //     .get(`${BACK_API_URL}/api/audiovisual/`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setAllAudioVisuals(res.data.audioVisuals);
+  //     })
+  //     .catch((error) => {
+  //       console.log("Get audiovisual Failed : ", error.message);
+  //     });
+  // };
 
-  const fetchAudioVisualDetails = (id) => {
-    axios
-      .get(`${BACK_API_URL}/api/audiovisual/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        setAudioVisualDetails(res.data.audioVisual);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const fetchAudioVisualDetails = (id) => {
+  //   axios
+  //     .get(`${BACK_API_URL}/api/audiovisual/${id}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setAudioVisualDetails(res.data.audioVisual);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const getFilteredAudioVisuals = (query) => {
-    return axios
-      .get(`${BACK_API_URL}/api/audiovisual/filtered/mixed`, {
-        params: query,
-      })
-      .then((response) => {
-        console.log(
-          "Filtered AudioVisuals Response:",
-          response.data.audioVisuals
-        );
-        setAllAudioVisuals(response.data.audioVisuals);
-        return response.data.audioVisuals;
-      })
-      .catch((error) => {
-        console.error("Error fetching filtered audiovisuals: ", error);
-      });
-  };
+  // const getFilteredAudioVisuals = (query) => {
+  //   return axios
+  //     .get(`${BACK_API_URL}/api/audiovisual/filtered/mixed`, {
+  //       params: query,
+  //     })
+  //     .then((response) => {
+  //       console.log(
+  //         "Filtered AudioVisuals Response:",
+  //         response.data.audioVisuals
+  //       );
+  //       setAllAudioVisuals(response.data.audioVisuals);
+  //       return response.data.audioVisuals;
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching filtered audiovisuals: ", error);
+  //     });
+  // };
 
-  const searchAudioVisuals = (query) => {
-    console.log("Search Data", query);
-    if (query !== "") {
-      axios
-        .get(`${BACK_API_URL}/api/audiovisual/searchbar/search?query=${query}`)
-        .then((res) => {
-          console.log("Search Results:", res.data.audioVisuals);
-          setAllAudioVisuals(res.data.audioVisuals);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      getAudioVisuals();
-    }
-  };
+  // const searchAudioVisuals = (query) => {
+  //   console.log("Search Data", query);
+  //   if (query !== "") {
+  //     axios
+  //       .get(`${BACK_API_URL}/api/audiovisual/searchbar/search?query=${query}`)
+  //       .then((res) => {
+  //         console.log("Search Results:", res.data.audioVisuals);
+  //         setAllAudioVisuals(res.data.audioVisuals);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     getAudioVisuals();
+  //   }
+  // };
 
   const addAudioVisualsToFavorites = (audioVisualId) => {
     const storedToken = localStorage.getItem("authToken");
@@ -237,99 +237,99 @@ function AuthProviderWrapper(props) {
       .catch((err) => console.log(err));
   };
 
-  const getCommentary = async (audioVisualId) => {
-    console.log("getCommentary", audioVisualId);
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .get(`${BACK_API_URL}/api/commentary/${audioVisualId}`, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      })
-      .then((res) => {
-        console.log("COMMENTARYYYYY", res.data);
-        setComments(res.data.comments);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const getCommentary = async (audioVisualId) => {
+  //   console.log("getCommentary", audioVisualId);
+  //   const storedToken = localStorage.getItem("authToken");
+  //   axios
+  //     .get(`${BACK_API_URL}/api/commentary/${audioVisualId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${storedToken}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log("COMMENTARYYYYY", res.data);
+  //       setComments(res.data.comments);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  const createCommentary = (audiovisualId, text) => {
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .post(
-        `${BACK_API_URL}/api/commentary/${audiovisualId}`,
-        {
-          text,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        setPostComments(res.data);
-        return "Commentary posted";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const createCommentary = (audiovisualId, text) => {
+  //   const storedToken = localStorage.getItem("authToken");
+  //   axios
+  //     .post(
+  //       `${BACK_API_URL}/api/commentary/${audiovisualId}`,
+  //       {
+  //         text,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${storedToken}`,
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setPostComments(res.data);
+  //       return "Commentary posted";
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const updateCommentary = (audioVisualId, commentId, text) => {
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .put(
-        `${BACK_API_URL}/api/commentary/${audioVisualId}/${commentId}`,
-        {
-          text,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data.data);
-        console.log("Commeeeeeents", comments);
-        const result = comments.map((comment) => {
-          if (comment._id === res.data.data._id) {
-            return res.data.data;
-          } else {
-            return comment;
-          }
-        });
-        setComments(result);
-        //   setComments([...comments, res.data.data]);
-        return "Commentary updated";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const updateCommentary = (audioVisualId, commentId, text) => {
+  //   const storedToken = localStorage.getItem("authToken");
+  //   axios
+  //     .put(
+  //       `${BACK_API_URL}/api/commentary/${audioVisualId}/${commentId}`,
+  //       {
+  //         text,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${storedToken}`,
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       console.log("Commeeeeeents", comments);
+  //       const result = comments.map((comment) => {
+  //         if (comment._id === res.data.data._id) {
+  //           return res.data.data;
+  //         } else {
+  //           return comment;
+  //         }
+  //       });
+  //       setComments(result);
+  //       //   setComments([...comments, res.data.data]);
+  //       return "Commentary updated";
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const deleteCommentary = (audioVisualId, commentId) => {
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .delete(`${BACK_API_URL}/api/commentary/${audioVisualId}/${commentId}`, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        const deleteComment = comments.filter(
-          (comment) => comment._id !== commentId
-        );
-        setComments(deleteComment);
-        return "Comment deleted";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const deleteCommentary = (audioVisualId, commentId) => {
+  //   const storedToken = localStorage.getItem("authToken");
+  //   axios
+  //     .delete(`${BACK_API_URL}/api/commentary/${audioVisualId}/${commentId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${storedToken}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       const deleteComment = comments.filter(
+  //         (comment) => comment._id !== commentId
+  //       );
+  //       setComments(deleteComment);
+  //       return "Comment deleted";
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <AuthContext.Provider
@@ -343,22 +343,22 @@ function AuthProviderWrapper(props) {
         logout,
         getUser,
         user,
-        createAudioVisuals,
-        audioVisuals,
-        allAudioVisuals,
-        setAllAudioVisuals,
-        getAudioVisuals,
-        fetchAudioVisualDetails,
-        audiovisualDetails,
-        getCommentary,
-        comments,
-        createCommentary,
-        postComments,
-        updateCommentary,
-        updateComments,
-        deleteCommentary,
-        getFilteredAudioVisuals,
-        searchAudioVisuals,
+        // createAudioVisuals,
+        // audioVisuals,
+        // allAudioVisuals,
+        // setAllAudioVisuals,
+        // getAudioVisuals,
+        // fetchAudioVisualDetails,
+        // audiovisualDetails,
+        // getCommentary,
+        // comments,
+        // createCommentary,
+        // postComments,
+        // updateCommentary,
+        // updateComments,
+        // deleteCommentary,
+        // getFilteredAudioVisuals,
+        // searchAudioVisuals,
         addAudioVisualsToFavorites,
         addFavorite,
         getFavorite,

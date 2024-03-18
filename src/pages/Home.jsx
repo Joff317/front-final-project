@@ -6,14 +6,13 @@ import AudioVisualFilterByGenre from "../components/audioVisualFilter/AudioVisua
 import AudioVisualFilter from "../components/audioVisualFilter/AudioVisualFilter";
 import SearchBar from "../components/homeSearchBar/SearchBar";
 import AnimatedTitle from "../components/animation/AnimatedTitle";
+import { AudioVisualContext } from "../context/audiovisual.context";
 
 const Home = (props) => {
-  const {
-    allAudioVisuals,
-    getAudioVisuals,
-    getFilteredAudioVisuals,
-    searchAudioVisuals,
-  } = useContext(AuthContext);
+  // const { getFilteredAudioVisuals } =
+  //   useContext(AuthContext);
+
+  const { allAudioVisuals, getAudioVisuals, getFilteredAudioVisuals } = useContext(AudioVisualContext);
 
   const [selectedType, setSelectedType] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
