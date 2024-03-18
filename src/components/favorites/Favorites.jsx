@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/auth.context";
 import AudiovisualCard from "../audioVisualCard/AudiovisualCard";
 import DeleteFavoritePopup from "./popupConfirmation/deletePopup/DeleteFavoritePopup";
+import { FavoritesContext } from "../../context/favorites.context";
 
 const Favorites = () => {
-  const { favorites, getFavorite, deleteFavorite } = useContext(AuthContext);
+  const { favorites, getFavorite, deleteFavorite } = useContext(FavoritesContext);
   const [deletePopup, setDeletePopup] = useState(false);
 
   useEffect(() => {

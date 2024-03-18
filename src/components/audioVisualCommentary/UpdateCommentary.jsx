@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/fontawesome-free-solid";
+import { CommentariesContext } from "../../context/commentaries.context";
 
 const UpdateCommentary = (props) => {
   const { comment, setIsEditing, isEditing } = props;
-  const { user, updateCommentary, getCommentary } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const { updateCommentary} = useContext(CommentariesContext)
 
   const [newText, setNewText] = useState(comment.text);
   // const [isEditing, setIsEditing] = useState(false);

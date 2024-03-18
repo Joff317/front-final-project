@@ -3,10 +3,13 @@ import { AuthContext } from "../../context/auth.context";
 import UpdateCommentary from "./UpdateCommentary";
 import DeleteCommentary from "./DeleteCommentary";
 import "./commentary.css";
+import { CommentariesContext } from "../../context/commentaries.context";
 
 const Commentary = (props) => {
-  const {getCommentary, comments, checkLogin, user, getUser } = useContext(AuthContext);
+  const { checkLogin, user, getUser } = useContext(AuthContext);
+  const { comments } = useContext(CommentariesContext);
 
+  const { getCommentary } = useContext(CommentariesContext);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {

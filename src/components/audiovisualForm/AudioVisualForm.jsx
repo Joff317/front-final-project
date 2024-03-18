@@ -4,9 +4,11 @@ import { AuthContext } from "../../context/auth.context";
 import "./audiovisualForm.css";
 import { validateCategory } from "../utils/ValisationUtils";
 import { useNavigate } from "react-router-dom";
+import { AudioVisualContext } from "../../context/audiovisual.context";
 
 const AudioVisualForm = () => {
-  const { token, createAudioVisuals } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
+  const { createAudioVisuals } = useContext(AudioVisualContext);
 
   const [categorie, setCategorie] = useState("");
   const [synopsis, setSynopsis] = useState("");

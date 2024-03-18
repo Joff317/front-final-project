@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import SearchInput from "./SearchInput";
+import { AudioVisualContext } from "../../context/audiovisual.context";
 
 const SearchBar = ({ onSearch }) => {
-  const { searchAudioVisuals, getAudioVisuals } = useContext(AuthContext);
+  // const { searchAudioVisuals } = useContext(AuthContext);
   const [query, setQuery] = useState("");
+
+  const { searchAudioVisuals } = useContext(AudioVisualContext);
 
   console.log(query);
 
