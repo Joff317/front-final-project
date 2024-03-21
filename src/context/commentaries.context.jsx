@@ -69,6 +69,7 @@ function CommentariesProviderWrapper(props) {
       .then((res) => {
         console.log(res.data.data);
         console.log("Commeeeeeents", comments);
+      //   On met en place une nouvelle liste de comm avec les coms mis à jour
         const result = comments.map((comment) => {
           if (comment._id === res.data.data._id) {
             return res.data.data;
@@ -76,7 +77,7 @@ function CommentariesProviderWrapper(props) {
             return comment;
           }
         });
-        setComments(result);
+        setComments(result); //Ici on met à jour la nouvelle liste de comm avec les modifs
         //   setComments([...comments, res.data.data]);
         return "Commentary updated";
       })

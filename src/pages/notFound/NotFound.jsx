@@ -6,7 +6,7 @@ import {
   animated,
   useSpringRef,
 } from "@react-spring/web";
-import "./notFound.css"; // Assurez-vous d'importer le fichier de styles CSS
+import "./notFound.css"; 
 import { Link } from "react-router-dom";
 
 const COORDS = [

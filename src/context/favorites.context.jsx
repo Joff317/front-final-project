@@ -57,6 +57,7 @@ function FavoritesProviderWrapper(props) {
         },
       })
       .then((res) => {
+         //Ici on met à jour la nouvelle liste filtré, donc ce qui retire l'audiovisuel des favs
         setFavorites((prevFav) =>
           prevFav.filter((fav) => fav._id !== audioVisualId)
         );
