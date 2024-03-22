@@ -9,10 +9,10 @@ const AnimatedTitle = () => {
     letters.forEach((letter, index) => {
       const span = document.createElement("span");
       span.textContent = letter;
-      span.style.opacity = 0; // Cacher initialement chaque lettre
+      span.style.opacity = 0; // Ici on Cache initialement chaque lettre
       title.appendChild(span);
 
-      // Animation : Faire apparaître progressivement chaque lettre
+      // Animation pour faire apparaître progressivement chaque lettre
       setTimeout(() => {
         span.style.opacity = 1;
       }, index * 100); // Augmenter progressivement le délai pour chaque lettre
@@ -20,7 +20,10 @@ const AnimatedTitle = () => {
   }, []);
 
   return (
-    <h1 id="animated-title" className="sm:text-3xl text-xl uppercase h2 mb-4 font-pacifico">
+    <h1
+      id="animated-title"
+      className="sm:text-3xl text-xl uppercase h2 mb-4 font-pacifico"
+    >
       Social Watch
     </h1>
   );

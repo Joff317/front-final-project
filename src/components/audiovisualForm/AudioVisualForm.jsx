@@ -43,7 +43,7 @@ const AudioVisualForm = () => {
     e.preventDefault();
     console.log("test création audiovisuel");
     if (!validateCategory(categorie)) {
-      setCategorieError("Ça doit être 'film' ou 'série' ou 'animé'");
+      setCategorieError("Ça doit être 'film' ou 'serie' ou 'animé'");
       return;
     }
 
@@ -170,7 +170,7 @@ const AudioVisualForm = () => {
         </div>
         <div className="flex flex-col gap-2 mb-3">
           <label className="label-form">
-            Date d'apparution <span className="text-red-700">*</span> :
+            Date de parution <span className="text-red-700">*</span> :
           </label>
           <input
             required
