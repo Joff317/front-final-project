@@ -33,7 +33,7 @@ const AudiovisualCard = (props) => {
       )}
       <Card
         isFooterBlurred
-        className="w-[270px] h-[300px] col-span-12 sm:col-span-5 rounded-t-xl rounded-b-xl visual-card shadow-md shadow-black"
+        className="w-[270px] h-[300px] col-span-12 sm:col-span-5 rounded-t-xl rounded-b-xl visual-card shadow-sm shadow-white"
       >
         <CardHeader className="absolute z-10 top-1 items-start ">
           <h4
