@@ -10,7 +10,7 @@ const isValidPassword = (password) => {
 };
 
 const validateCategory = (categorie) => {
-  const validCategories = ["film", "série", "animé"];
+  const validCategories = ["film", "serie", "animé"];
   return (
     categorie.trim() !== "" && validCategories.includes(categorie.toLowerCase())
   );
