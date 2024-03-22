@@ -16,8 +16,4 @@ const validateCategory = (categorie) => {
   );
 };
 
-const validateCommentary = (comment) => {
-  const validateCommentaries = comment
-}
-
 export { isValidEmail, isValidPassword, validateCategory };
