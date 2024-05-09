@@ -7,12 +7,14 @@ import AudioVisualFilter from "../components/audioVisualFilter/AudioVisualFilter
 import SearchBar from "../components/homeSearchBar/SearchBar";
 import AnimatedTitle from "../components/animation/AnimatedTitle";
 import { AudioVisualContext } from "../context/audiovisual.context";
+import Loader from "react-loader-spinner";
 
 const Home = (props) => {
   // const { getFilteredAudioVisuals } =
   //   useContext(AuthContext);
 
-  const { allAudioVisuals, getAudioVisuals, getFilteredAudioVisuals } = useContext(AudioVisualContext);
+  const { allAudioVisuals, getAudioVisuals, getFilteredAudioVisuals, loading } =
+    useContext(AudioVisualContext);
 
   const [selectedType, setSelectedType] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
@@ -57,10 +59,14 @@ const Home = (props) => {
       )}
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
-        {allAudioVisuals.length !== 0 &&
+        {loading ? (
+          <Loader type="Puff" color="#5b080b" height={150} width={150} />
+        ) : (
+          allAudioVisuals.length !== 0 &&
           allAudioVisuals.map((audiovisual) => (
             <AudiovisualCard audiovisual={audiovisual} key={audiovisual._id} />
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

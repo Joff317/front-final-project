@@ -8,6 +8,7 @@ function AudioVisualProviderWrapper(props) {
   const [audioVisuals, setAudioVisuals] = useState([]);
   const [allAudioVisuals, setAllAudioVisuals] = useState([]);
   const [audiovisualDetails, setAudioVisualDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
   const BACK_API_URL = process.env.API_URL;
 
   const createAudioVisuals = (
@@ -42,11 +43,13 @@ function AudioVisualProviderWrapper(props) {
   };
 
   const getAudioVisuals = () => {
+    setLoading(true);
     axios
       .get(`${BACK_API_URL}/api/audiovisual/`)
       .then((res) => {
         console.log(res.data);
         setAllAudioVisuals(res.data.audioVisuals);
+        setLoading(false);
       })
       .catch((error) => {
         console.log("Get audiovisual Failed : ", error.message);
@@ -112,8 +115,7 @@ function AudioVisualProviderWrapper(props) {
         fetchAudioVisualDetails,
         audiovisualDetails,
         searchAudioVisuals,
-        getFilteredAudioVisuals
-
+        getFilteredAudioVisuals,
       }}
     >
       {props.children}
