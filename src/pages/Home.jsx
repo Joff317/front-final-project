@@ -7,7 +7,7 @@ import AudioVisualFilter from "../components/audioVisualFilter/AudioVisualFilter
 import SearchBar from "../components/homeSearchBar/SearchBar";
 import AnimatedTitle from "../components/animation/AnimatedTitle";
 import { AudioVisualContext } from "../context/audiovisual.context";
-import Loader from "react-loader-spinner";
+import "./home.css";
 
 const Home = (props) => {
   // const { getFilteredAudioVisuals } =
@@ -60,7 +60,9 @@ const Home = (props) => {
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
         {loading ? (
-          <Loader type="Puff" color="#5b080b" height={150} width={150} />
+          <div className="loader-container">
+            <div className="loader"></div>
+          </div>
         ) : (
           allAudioVisuals.length !== 0 &&
           allAudioVisuals.map((audiovisual) => (
