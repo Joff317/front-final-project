@@ -116,6 +116,7 @@ function AudioVisualProviderWrapper(props) {
         audiovisualDetails,
         searchAudioVisuals,
         getFilteredAudioVisuals,
+        loading,
       }}
     >
       {props.children}
