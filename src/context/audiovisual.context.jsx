@@ -42,18 +42,17 @@ function AudioVisualProviderWrapper(props) {
       });
   };
 
-  const getAudioVisuals = () => {
-    setLoading(true);
-    axios
-      .get(`${BACK_API_URL}/api/audiovisual/`)
-      .then((res) => {
-        console.log(res.data);
-        setAllAudioVisuals(res.data.audioVisuals);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("Get audiovisual Failed : ", error.message);
-      });
+  const getAudioVisuals = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${BACK_API_URL}/api/audiovisual/`);
+      console.log(res.data);
+      setAllAudioVisuals(res.data.audioVisuals);
+    } catch (error) {
+      console.log("Get audiovisual Failed : ", error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const fetchAudioVisualDetails = (id) => {

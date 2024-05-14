@@ -58,18 +58,21 @@ const Home = (props) => {
         </>
       )}
 
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
-        {loading ? (
-          <div className="loader-container">
-            <div className="loader"></div>
-          </div>
-        ) : (
-          allAudioVisuals.length !== 0 &&
-          allAudioVisuals.map((audiovisual) => (
-            <AudiovisualCard audiovisual={audiovisual} key={audiovisual._id} />
-          ))
-        )}
-      </div>
+      {loading ? (
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+          {allAudioVisuals.length !== 0 &&
+            allAudioVisuals.map((audiovisual) => (
+              <AudiovisualCard
+                audiovisual={audiovisual}
+                key={audiovisual._id}
+              />
+            ))}
+        </div>
+      )}
     </div>
   );
 };
